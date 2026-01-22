@@ -1,0 +1,221 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+
+export default function Portfolio() {
+  const [activeFilter, setActiveFilter] = useState('todos');
+
+  const projects = [
+    {
+      id: 1,
+      title: 'E-commerce Fashion',
+      category: 'web',
+      description: 'Tienda online de moda con carrito de compras y pasarela de pago integrada.',
+      image: '/placeholder-project.jpg',
+      tags: ['Next.js', 'Stripe', 'Tailwind'],
+      color: 'from-purple-500 to-pink-500',
+    },
+    {
+      id: 2,
+      title: 'App de Fitness',
+      category: 'mobile',
+      description: 'Aplicación móvil para seguimiento de rutinas y progreso físico.',
+      image: '/placeholder-project.jpg',
+      tags: ['React Native', 'Firebase', 'UI/UX'],
+      color: 'from-green-500 to-emerald-500',
+    },
+    {
+      id: 3,
+      title: 'Dashboard Analytics',
+      category: 'web',
+      description: 'Panel de control con visualización de datos en tiempo real.',
+      image: '/placeholder-project.jpg',
+      tags: ['React', 'Chart.js', 'API'],
+      color: 'from-blue-500 to-cyan-500',
+    },
+    {
+      id: 4,
+      title: 'Restaurante App',
+      category: 'mobile',
+      description: 'App de pedidos online con seguimiento de entregas en tiempo real.',
+      image: '/placeholder-project.jpg',
+      tags: ['Flutter', 'Maps API', 'Firebase'],
+      color: 'from-orange-500 to-red-500',
+    },
+    {
+      id: 5,
+      title: 'Portfolio Creativo',
+      category: 'design',
+      description: 'Sitio web portfolio para artista con galería interactiva.',
+      image: '/placeholder-project.jpg',
+      tags: ['Figma', 'Framer', 'WebGL'],
+      color: 'from-violet-500 to-purple-500',
+    },
+    {
+      id: 6,
+      title: 'Sistema CRM',
+      category: 'web',
+      description: 'Plataforma de gestión de clientes y ventas para empresas.',
+      image: '/placeholder-project.jpg',
+      tags: ['Vue.js', 'Node.js', 'MongoDB'],
+      color: 'from-teal-500 to-cyan-500',
+    },
+  ];
+
+  const filters = [
+    { id: 'todos', label: 'Todos' },
+    { id: 'web', label: 'Web' },
+    { id: 'mobile', label: 'Mobile' },
+    { id: 'design', label: 'Diseño' },
+  ];
+
+  const filteredProjects = activeFilter === 'todos' 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
+
+  return (
+    <section id="portafolio" className="relative py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative z-10 container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Nuestro{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.8)]">
+              Portafolio
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+            Proyectos que demuestran nuestra experiencia y pasión por la excelencia
+          </p>
+          <div className="mt-6 w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full shadow-[0_0_20px_rgba(168,85,247,0.8)]"></div>
+        </div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {filters.map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={`relative px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                activeFilter === filter.id
+                  ? 'text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              {activeFilter === filter.id && (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-purple-500 blur-lg opacity-50"></div>
+                </>
+              )}
+              {activeFilter !== filter.id && (
+                <div className="absolute inset-0 bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500/50 rounded-xl transition-all duration-300"></div>
+              )}
+              <span className="relative z-10">{filter.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              className="group relative"
+              style={{
+                animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`,
+              }}
+            >
+              {/* Card glow */}
+              <div className={`absolute -inset-0.5 bg-gradient-to-r ${project.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}></div>
+              
+              {/* Card */}
+              <div className="relative h-full bg-gray-900/90 backdrop-blur-sm border border-gray-800 group-hover:border-purple-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105">
+                {/* Image placeholder */}
+                <div className={`relative h-48 bg-gradient-to-br ${project.color} overflow-hidden`}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <svg className="w-20 h-20 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button className="px-6 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl text-white font-medium hover:bg-white/30 transition-all duration-300">
+                      Ver Proyecto
+                    </button>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-gray-800/50 border border-gray-700 text-gray-400 text-xs rounded-lg group-hover:border-purple-500/30 transition-colors duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Arrow indicator */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* View more button */}
+        <div className="text-center mt-16">
+          <button className="relative group overflow-hidden px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300"></div>
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-purple-500 blur-xl"></div>
+            </div>
+            <span className="relative z-10 text-white text-lg drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+              Ver Más Proyectos
+            </span>
+            <div className="absolute inset-0 border-2 border-pink-400/0 group-hover:border-pink-400/50 rounded-xl transition-all duration-300"></div>
+          </button>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
