@@ -18,14 +18,12 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
-                <span className="text-white font-bold text-2xl drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
-                  D
-                </span>
+              <div className="w-13 h-20 flex-shrink-0 overflow-visible">
+                <img src="/logo-valher-no-background.png" alt="Valzar Solutions" className="h-full w-full object-contain scale-150" />
               </div>
               <div className="ml-3">
                 <span className="block text-white font-bold text-xl drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-                  Digital Services
+                  Valzar Solutions
                 </span>
                 <span className="block text-xs text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">
                   Innovación Digital
@@ -35,21 +33,6 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-6 leading-relaxed">
               Transformamos ideas en experiencias digitales excepcionales que impulsan el crecimiento de tu negocio.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((social, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="w-10 h-10 bg-gray-800/50 border border-gray-700 hover:border-blue-500/50 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 transition-all duration-300 hover:transform hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]"
-                  aria-label={social}
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z" />
-                  </svg>
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Servicios */}
@@ -122,7 +105,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Digital Services. Todos los derechos reservados.
+              © {currentYear} Valzar Solutions. Todos los derechos reservados.
             </p>
             <div className="flex gap-6">
               {footerLinks.legal.map((link, index) => (
