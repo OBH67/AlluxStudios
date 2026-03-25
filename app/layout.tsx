@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Digital Services - Mejoramos tu imagen digital",
   description: "Transformamos tu presencia digital con soluciones modernas, claras y efectivas.",
+  icons: {
+    icon: "/logo-valher-no-background.png",
+  },
 };
 
 export default function RootLayout({

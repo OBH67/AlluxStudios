@@ -21,8 +21,8 @@ export const contactInfo: ContactItem[] = [
       </svg>
     ),
     title: 'Email',
-    value: 'omarbalanzarherrera@digitalservices.com',
-    link: 'mailto:omarbalanzarherrera@digitalservices.com',
+    value: 'contacto@valzarsolutions.com',
+    link: 'mailto:contacto@valzarsolutions.com',
   },
   {
     icon: (

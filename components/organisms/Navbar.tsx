@@ -31,15 +31,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo with image */}
           <div className="group flex cursor-pointer items-center">
-            <div className="h-14 w-14 flex-shrink-0">
-              <img src="/logo-no-background.png" alt="Allux Studios" className="h-full w-full object-contain" />
+            <div className="h-20 w-20 flex-shrink-0 overflow-visible">
+              <img src="/logo-valher-no-background.png" alt="Valzar Solutions" className="h-full w-full object-contain scale-150" />
             </div>
             <div className="ml-3">
               <span className="block text-2xl font-bold text-white drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-                ALLUX
+                VALZAR
               </span>
               <span className="block text-xs text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">
-                STUDIOS
+                SOLUTIONS
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Navbar() {
                   {link.label}
                 </span>
                 <div className="absolute inset-0 rounded-lg bg-blue-500/0 transition-all duration-300 group-hover:bg-blue-500/10"></div>
-                <div className="group-hover:left-1/8 absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-blue-500 to-cyan-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-all duration-300 group-hover:w-3/4"></div>
+                <div className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-all duration-300 group-hover:w-3/4"></div>
               </a>
             ))}
           </div>

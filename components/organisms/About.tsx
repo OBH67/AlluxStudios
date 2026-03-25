@@ -2,8 +2,6 @@
 
 export default function About() {
 	const stats = [
-		{ number: '150+', label: 'Proyectos Completados' },
-		{ number: '50+', label: 'Clientes Satisfechos' },
 		{ number: '5+', label: 'Años de Experiencia' },
 		{ number: '24/7', label: 'Soporte Técnico' },
 	];
@@ -138,17 +136,114 @@ export default function About() {
 					</div>
 				</div>
 
-				{/* Mission Statement */}
-				<div className="relative group">
-					<div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-					<div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 group-hover:border-blue-500/50 rounded-3xl p-12 text-center transition-all duration-300">
-						<h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-							Nuestra Misión
-						</h3>
-						<p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-							Empoderar a las empresas con soluciones digitales innovadoras que no solo cumplan, sino que superen sus expectativas, 
-							creando experiencias memorables para sus usuarios y generando un impacto real en su crecimiento.
-						</p>
+				{/* Mission, Vision, Values Section */}
+				<div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
+					{/* Misión */}
+					<div className="relative group flex">
+						<div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+						<div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 group-hover:border-blue-500/50 rounded-3xl p-8 lg:p-6 text-center transition-all duration-300 flex flex-col w-full">
+							<div className="text-4xl mb-4">🎯</div>
+							<h3 className="text-2xl lg:text-2xl xl:text-3xl font-bold text-white mb-4">
+								Misión
+							</h3>
+							<p className="text-base lg:text-sm xl:text-base text-gray-400 leading-relaxed">
+								Ayudar a empresas y emprendedores a fortalecer su imagen y presencia digital mediante consultoría estratégica, desarrollo de soluciones tecnológicas y herramientas innovadoras que optimicen sus procesos, mejoren su visibilidad y potencien su crecimiento en internet.
+							</p>
+						</div>
+					</div>
+
+					{/* Visión - Destacada */}
+					<div className="relative group flex lg:-mt-4 lg:mb-4">
+						<div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+						<div className="relative bg-gray-900/90 backdrop-blur-sm border border-cyan-500/50 group-hover:border-cyan-400/70 rounded-3xl p-8 lg:p-6 text-center transition-all duration-300 flex flex-col w-full">
+							<div className="text-5xl mb-4">🚀</div>
+							<h3 className="text-3xl lg:text-2xl xl:text-3xl font-bold text-white mb-4">
+								Visión
+							</h3>
+							<p className="text-base lg:text-sm xl:text-base text-gray-300 leading-relaxed">
+								Ser una consultoría líder en transformación digital para negocios, reconocida por impulsar el crecimiento de empresas mediante soluciones tecnológicas innovadoras, estrategias digitales efectivas y automatización inteligente, ayudándolas a destacar y posicionarse en el mundo online.
+							</p>
+						</div>
+					</div>
+
+					{/* Valores */}
+					<div className="relative group flex">
+						<div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+						<div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 group-hover:border-blue-500/50 rounded-3xl p-8 lg:p-6 transition-all duration-300 flex flex-col w-full">
+							<div className="text-4xl mb-4 text-center">💎</div>
+							<h3 className="text-2xl lg:text-2xl xl:text-3xl font-bold text-white mb-4 text-center">
+								Valores
+							</h3>
+							<div className="space-y-3">
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Innovación</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Adoptamos nuevas tecnologías y tendencias digitales.</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Compromiso</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Socios estratégicos en su crecimiento.</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Profesionalismo</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Altos estándares de calidad.</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Transparencia</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Comunicación honesta y directa.</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Enfoque en resultados</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Impacto real y medible.</p>
+									</div>
+								</div>
+								<div className="flex items-start gap-2">
+									<div className="text-cyan-400 mt-1 flex-shrink-0">
+										<svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+										</svg>
+									</div>
+									<div className="flex-1">
+										<h4 className="text-white font-semibold text-sm lg:text-xs xl:text-sm">Adaptabilidad</h4>
+										<p className="text-gray-500 text-xs lg:text-xs">Soluciones personalizadas.</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
