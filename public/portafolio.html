@@ -21,6 +21,9 @@
     --gold-dim:  #2D5F9D;
     --gold-glow: rgba(76,154,255,0.16);
     --green:     #3DB88B;
+    --amber:     #F59E0B;
+    --amber-dim: #92400E;
+    --amber-glow:rgba(245,158,11,0.12);
     --nav-height: 76px;
   }
 
@@ -134,13 +137,35 @@
   .project-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
   .project-card:hover::after { transform: scaleX(1); }
 
+  /* SaaS card accent color override */
+  .project-card.saas::after { background: linear-gradient(90deg, var(--amber), transparent); }
+
+  /* BETA badge */
+  .badge-beta {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid var(--amber-dim);
+    color: var(--amber);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .badge-beta-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); animation: pulse 2s infinite; }
+
   /* GALLERY */
   .project-gallery { width: 100%; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: var(--surface2); }
-
   .gallery-slides { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
   .gallery-slide { min-width: 100%; height: 340px; position: relative; overflow: hidden; }
   .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
   .project-card:hover .gallery-slide img { transform: scale(1.03); }
+
+  /* iframe preview */
+  .gallery-slide.iframe-slide { position: relative; background: var(--surface2); }
+  .gallery-slide.iframe-slide iframe { width: 100%; height: 100%; border: none; transform-origin: top left; pointer-events: none; }
+  .iframe-overlay { position: absolute; inset: 0; z-index: 5; display: flex; align-items: flex-end; padding: 16px; background: linear-gradient(to top, rgba(11,11,11,0.7) 0%, transparent 60%); }
+  .iframe-visit-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: rgba(11,11,11,0.85); border: 1px solid var(--border2); color: var(--text-mid); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; backdrop-filter: blur(8px); font-family: 'Outfit', sans-serif; }
+  .iframe-visit-btn:hover { border-color: var(--amber); color: var(--amber); }
 
   .gallery-placeholder { width: 100%; height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: var(--surface2); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.3s; position: relative; overflow: hidden; }
   .gallery-placeholder::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.01) 20px,rgba(255,255,255,0.01) 40px); }
@@ -153,28 +178,32 @@
   .gallery-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; z-index: 10; }
   .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.2s; border: none; padding: 0; }
   .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
+  .gallery-dot.amber { }
+  .gallery-dot.amber.active { background: var(--amber); }
 
   .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: rgba(11,11,11,0.72); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); font-size: 1.1rem; transition: all 0.2s; z-index: 10; backdrop-filter: blur(8px); opacity: 0; }
   .project-gallery:hover .gallery-arrow { opacity: 1; }
   .gallery-arrow:hover { background: rgba(76,154,255,0.15); border-color: var(--gold); color: var(--gold); }
+  .gallery-arrow.amber-hover:hover { background: var(--amber-glow); border-color: var(--amber); color: var(--amber); }
   .gallery-arrow.prev { left: 16px; }
   .gallery-arrow.next { right: 16px; }
 
   .btn-add-img { position: absolute; top: 14px; right: 14px; z-index: 10; display: flex; align-items: center; gap: 7px; padding: 7px 14px; background: rgba(11,11,11,0.78); border: 1px solid var(--border2); color: var(--text-dim); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(8px); font-family: 'Outfit', sans-serif; opacity: 0; }
   .project-gallery:hover .btn-add-img { opacity: 1; }
   .btn-add-img:hover { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-glow); }
-
   .img-upload-input { display: none; }
 
   /* PROJECT CONTENT */
   .project-content { display: grid; grid-template-columns: 260px 1fr 240px; }
   .project-aside { padding: 36px 30px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; }
   .project-num { font-family: 'Fira Code', monospace; font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.15em; margin-bottom: 20px; }
+  .project-num.amber { color: var(--amber-dim); }
   .project-company { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 10px; }
   .project-period { font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 16px; }
 
   .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border: 1px solid var(--border2); color: var(--text-dim); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin-bottom: 20px; font-family: 'Outfit', sans-serif; }
   .project-link:hover { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-glow); }
+  .project-link.amber:hover { border-color: var(--amber-dim); color: var(--amber); background: var(--amber-glow); }
   .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
 
   .project-status { display: inline-flex; align-items: center; gap: 8px; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
@@ -182,23 +211,30 @@
   @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
   .project-status.ended { color: var(--text-dim); }
   .project-status.ended .project-status-dot { background: var(--text-dim); box-shadow: none; animation: none; }
+  .project-status.beta { color: var(--amber); }
+  .project-status.beta .project-status-dot { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
 
   .project-body { padding: 36px 40px; display: flex; flex-direction: column; gap: 18px; }
   .project-role-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--border2); width: fit-content; }
   .project-role-badge span { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
   .project-role-badge .role-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .project-role-badge .role-dot.amber { background: var(--amber); }
   .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--text); line-height: 1.25; }
   .project-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.75; max-width: 520px; }
   .project-highlights { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
   .highlight-item { display: flex; align-items: flex-start; gap: 14px; font-size: 0.83rem; color: var(--text-dim); line-height: 1.5; }
   .highlight-item::before { content: '→'; color: var(--gold); flex-shrink: 0; margin-top: 1px; font-size: 0.75rem; }
+  .highlight-item.amber::before { color: var(--amber); }
 
   .project-stack { padding: 36px 28px; border-left: 1px solid var(--border); display: flex; flex-direction: column; gap: 24px; }
   .stack-group-label { font-family: 'Fira Code', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 10px; }
+  .stack-group-label.amber { color: var(--amber-dim); }
   .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .stack-tag { font-family: 'Fira Code', monospace; font-size: 0.63rem; padding: 5px 10px; background: var(--surface2); border: 1px solid var(--border2); color: var(--text-mid); transition: all 0.2s; letter-spacing: 0.03em; }
   .stack-tag:hover { color: var(--gold); border-color: var(--gold-dim); background: var(--gold-glow); }
   .stack-tag.highlight { color: var(--gold); border-color: var(--gold-dim); }
+  .stack-tag.highlight.amber { color: var(--amber); border-color: var(--amber-dim); }
+  .stack-tag.amber:hover { color: var(--amber); border-color: var(--amber-dim); background: var(--amber-glow); }
 
   /* ABOUT */
   #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -267,7 +303,7 @@
 <!-- NAV -->
 <nav>
   <a href="https://www.valzarsolutions.com/" target="_blank" class="nav-brand">
-    <img src="/logo.png" alt="Valzar Solutions" style="width: 34px; height: 34px; object-fit: contain;" />
+    <img src="/logo.png" alt="Valzar Solutions" style="width:34px;height:34px;object-fit:contain;" onerror="this.outerHTML='<div class=\'nav-logo-mark\'>VS</div>'" />
     <div class="nav-brand-text">
       <div class="nav-brand-name">Valzar Solutions</div>
       <div class="nav-brand-sub">valzarsolutions.com</div>
@@ -298,7 +334,7 @@
   </p>
   <div class="hero-meta fade-up">
     <div><div class="hero-stat-num">6+</div><div class="hero-stat-label">Años de Experiencia</div></div>
-    <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Clientes Enterprise</div></div>
+    <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Proyectos Entregados</div></div>
     <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Plataformas Cloud</div></div>
     <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Tecnologías Core</div></div>
   </div>
@@ -310,32 +346,32 @@
 <div class="marquee-section">
   <div class="marquee-track">
     <span class="marquee-item">.NET Core <span class="dot"></span></span>
-    <span class="marquee-item">React 18 <span class="dot"></span></span>
+    <span class="marquee-item">React 18 / 19 <span class="dot"></span></span>
+    <span class="marquee-item">Next.js <span class="dot"></span></span>
     <span class="marquee-item">TypeScript <span class="dot"></span></span>
     <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
     <span class="marquee-item">Microservicios <span class="dot"></span></span>
     <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
-    <span class="marquee-item">SQL Server <span class="dot"></span></span>
+    <span class="marquee-item">Tailwind CSS 4 <span class="dot"></span></span>
     <span class="marquee-item">GitHub Copilot MCP <span class="dot"></span></span>
     <span class="marquee-item">SignalR WebSockets <span class="dot"></span></span>
     <span class="marquee-item">GraphQL <span class="dot"></span></span>
     <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
-    <span class="marquee-item">Entity Framework <span class="dot"></span></span>
-    <span class="marquee-item">Azure DevOps <span class="dot"></span></span>
+    <span class="marquee-item">Framer Motion <span class="dot"></span></span>
     <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
     <span class="marquee-item">.NET Core <span class="dot"></span></span>
-    <span class="marquee-item">React 18 <span class="dot"></span></span>
+    <span class="marquee-item">React 18 / 19 <span class="dot"></span></span>
+    <span class="marquee-item">Next.js <span class="dot"></span></span>
     <span class="marquee-item">TypeScript <span class="dot"></span></span>
     <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
     <span class="marquee-item">Microservicios <span class="dot"></span></span>
     <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
-    <span class="marquee-item">SQL Server <span class="dot"></span></span>
+    <span class="marquee-item">Tailwind CSS 4 <span class="dot"></span></span>
     <span class="marquee-item">GitHub Copilot MCP <span class="dot"></span></span>
     <span class="marquee-item">SignalR WebSockets <span class="dot"></span></span>
     <span class="marquee-item">GraphQL <span class="dot"></span></span>
     <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
-    <span class="marquee-item">Entity Framework <span class="dot"></span></span>
-    <span class="marquee-item">Azure DevOps <span class="dot"></span></span>
+    <span class="marquee-item">Framer Motion <span class="dot"></span></span>
     <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
   </div>
 </div>
@@ -353,9 +389,9 @@
     <div class="expertise-card fade-up">
       <div class="expertise-icon">◈</div>
       <div class="expertise-name">Desarrollo Frontend</div>
-      <p class="expertise-desc">Aplicaciones web responsivas de alto rendimiento con arquitectura React moderna, datos en tiempo real y sistemas UI pulidos.</p>
+      <p class="expertise-desc">Aplicaciones web responsivas de alto rendimiento con React y Next.js, datos en tiempo real y sistemas UI pulidos con Framer Motion.</p>
       <div class="expertise-tech">
-        <span class="tech-tag">React 18</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Ant Design</span><span class="tech-tag">SignalR</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">Jest</span>
+        <span class="tech-tag">React 18/19</span><span class="tech-tag">Next.js</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Tailwind CSS 4</span><span class="tech-tag">Framer Motion</span><span class="tech-tag">shadcn/ui</span>
       </div>
     </div>
     <div class="expertise-card fade-up">
@@ -371,7 +407,7 @@
       <div class="expertise-name">Arquitectura Cloud</div>
       <p class="expertise-desc">Soluciones cloud end-to-end en Azure y AWS. CI/CD, funciones serverless, pipelines de datos e infraestructura como código.</p>
       <div class="expertise-tech">
-        <span class="tech-tag">Azure Functions</span><span class="tech-tag">Azure DevOps</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">Data Factory</span><span class="tech-tag">Key Vault</span>
+        <span class="tech-tag">Azure Functions</span><span class="tech-tag">Azure DevOps</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">Data Factory</span><span class="tech-tag">Vercel</span>
       </div>
     </div>
     <div class="expertise-card fade-up">
@@ -396,7 +432,7 @@
 
   <div class="projects-list">
 
-    <!-- PROJECT 1: Deloitte -->
+    <!-- ── PROJECT 1: Deloitte ── -->
     <div class="project-card fade-up">
       <div class="project-gallery" id="gallery-deloitte"></div>
       <div class="project-content">
@@ -405,7 +441,7 @@
             <div class="project-num">Proyecto / 01</div>
             <div class="project-company">Deloitte</div>
             <div class="project-period">2024 — Presente</div>
-            <a href="https://www.deloitte.com/us/en.html?icid=site_selector_us" target="_blank" class="project-link">
+            <a href="https://www.deloitte.com/us/en.html" target="_blank" class="project-link">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
               Ver sitio web
             </a>
@@ -416,6 +452,7 @@
           <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack Aumentado con IA</span></div>
           <div class="project-title">Plataforma Enterprise de Riesgo Financiero y Auditoría</div>
           <p class="project-desc">Sistema de detección de conflictos para identificar riesgos entre actividades WBS, intereses financieros y entidades restringidas dentro de un entorno de auditoría empresarial a gran escala. Construido con React 18, .NET Core y Azure.</p>
+          <p class="project-desc">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
           <div class="project-highlights">
             <div class="highlight-item">UI de detección de conflictos para actividades WBS y entidades de riesgo financiero con filtros y reportes en tiempo real</div>
             <div class="highlight-item">Microservicios RESTful en ASP.NET Core con integración de datos de mercado near real-time</div>
@@ -431,7 +468,7 @@
       </div>
     </div>
 
-    <!-- PROJECT 2: Arroyo Consulting -->
+    <!-- ── PROJECT 2: Arroyo Consulting ── -->
     <div class="project-card fade-up">
       <div class="project-gallery" id="gallery-arroyo"></div>
       <div class="project-content">
@@ -451,6 +488,7 @@
           <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack &amp; Ingeniero Cloud</span></div>
           <div class="project-title">Plataforma de Gestión Financiera y Datos de Mercado en Tiempo Real</div>
           <p class="project-desc">Dos aplicaciones enterprise interconectadas: un sistema de gestión de auditoría financiera y un dashboard de datos de mercado en vivo — ambos sobre microservicios con comunicación WebSocket en tiempo real mediante SignalR.</p>
+          <p class="project-desc">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
           <div class="project-highlights">
             <div class="highlight-item">Dashboards financieros en tiempo real con SignalR WebSockets y feeds de datos de mercado configurables</div>
             <div class="highlight-item">Backend completo en microservicios .NET Core con Service Bus, Entity Framework y LINQ</div>
@@ -466,7 +504,7 @@
       </div>
     </div>
 
-    <!-- PROJECT 3: Woonkly -->
+    <!-- ── PROJECT 3: Woonkly ── -->
     <div class="project-card fade-up">
       <div class="project-gallery" id="gallery-woonkly"></div>
       <div class="project-content">
@@ -501,6 +539,104 @@
       </div>
     </div>
 
+    <!-- ── PROJECT 4: SavQRO ── -->
+    <div class="project-card saas fade-up">
+      <div class="project-gallery" id="gallery-savqro">
+        <div class="gallery-slide iframe-slide">
+          <iframe src="https://savqro-qjyk.vercel.app/" title="SavQRO Preview" scrolling="no" loading="lazy"
+            style="width:200%;height:200%;transform:scale(0.5);transform-origin:top left;"></iframe>
+          <div class="iframe-overlay">
+            <a href="https://savqro-qjyk.vercel.app/" target="_blank" class="iframe-visit-btn">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" style="width:11px;height:11px"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver aplicación en vivo
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="project-content">
+        <div class="project-aside">
+          <div>
+            <div class="project-num amber">Proyecto / 04</div>
+            <div class="project-company">SavQRO</div>
+            <div class="project-period">2025 — Presente</div>
+            <a href="https://savqro-qjyk.vercel.app/" target="_blank" class="project-link amber">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver aplicación
+            </a>
+          </div>
+          <div class="project-status beta"><div class="project-status-dot"></div>Beta — Go Live Próximo</div>
+        </div>
+        <div class="project-body">
+          <div class="badge-beta"><span class="badge-beta-dot"></span>Versión Beta · Lanzamiento en preparación</div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title">SaaS para Empresa de Aluminio y Vidrio con más de 20 Años de Trayectoria</div>
+          <p class="project-desc">
+            Plataforma digital diseñada para transformar un negocio familiar de aluminio y vidrio con más de 20 años de experiencia en una empresa formal y tecnológicamente competitiva. Cubre gestión de cotizaciones, catálogo de productos, seguimiento de proyectos y presencia digital profesional desde Querétaro.
+          </p>
+          <div class="project-highlights">
+            <div class="highlight-item amber">Digitalización completa del proceso comercial: cotizaciones, proyectos residenciales, hoteles, plazas y oficinas</div>
+            <div class="highlight-item amber">Interfaz centrada en atención al cliente con catálogo visual de trabajos y formulario de contacto integrado</div>
+            <div class="highlight-item amber">Diseño mobile-first optimizado para clientes en campo y personal administrativo</div>
+            <div class="highlight-item amber">Desplegado en Vercel con CI/CD automático; versión go-live en preparación con el cliente</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <div><div class="stack-group-label amber">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span></div></div>
+          <div><div class="stack-group-label amber">Estilos & UI</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Framer Motion</span><span class="stack-tag amber">Lucide React</span></div></div>
+          <div><div class="stack-group-label amber">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">CI/CD</span><span class="stack-tag amber">App Router</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PROJECT 5: Cafetería QRO ── -->
+    <div class="project-card saas fade-up">
+      <div class="project-gallery" id="gallery-cafeteria">
+        <div class="gallery-slide iframe-slide">
+          <iframe src="https://cafeteria-qro.vercel.app/" title="Cafetería QRO Preview" scrolling="no" loading="lazy"
+            style="width:200%;height:200%;transform:scale(0.5);transform-origin:top left;"></iframe>
+          <div class="iframe-overlay">
+            <a href="https://cafeteria-qro.vercel.app/" target="_blank" class="iframe-visit-btn">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" style="width:11px;height:11px"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver aplicación en vivo
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="project-content">
+        <div class="project-aside">
+          <div>
+            <div class="project-num amber">Proyecto / 05</div>
+            <div class="project-company">Cafetería QRO</div>
+            <div class="project-period">2025 — Presente</div>
+            <a href="https://cafeteria-qro.vercel.app/" target="_blank" class="project-link amber">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver aplicación
+            </a>
+          </div>
+          <div class="project-status beta"><div class="project-status-dot"></div>Beta — Diseño en Refinamiento</div>
+        </div>
+        <div class="project-body">
+          <div class="badge-beta"><span class="badge-beta-dot"></span>Versión Beta · Efecto 3D en desarrollo</div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title">Sitio Web Premium para Cadena de Cafeterías con 5+ Establecimientos en Querétaro</div>
+          <p class="project-desc">
+            Presencia digital de alto impacto para una cadena de cafeterías de especialidad con más de 5 establecimientos en Querétaro. Se esta trabajando en las ultimas mejoras del diseño y experiencia visual inmersiva con animaciones avanzadas en Framer Motion, diseño editorial minimalista y pantalla principal próxima a recibir efectos 3D interactivos.
+          </p>
+          <div class="project-highlights">
+            <div class="highlight-item amber">Estética editorial minimalista sin border-radius, paleta cálida amber/stone y tipografía Cormorant Garamond</div>
+            <div class="highlight-item amber">Animaciones avanzadas con Framer Motion 12 para transiciones de sección, parallax y entradas escalonadas</div>
+            <div class="highlight-item amber">Menú digital, galería de productos, ubicaciones con horarios y sección de reservaciones</div>
+            <div class="highlight-item amber">Pantalla principal en preparación para efecto 3D interactivo; diseño mobile-first con Tailwind CSS 4</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <div><div class="stack-group-label amber">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js 16</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span><span class="stack-tag amber">App Router</span></div></div>
+          <div><div class="stack-group-label amber">Estilos & Animaciones</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag highlight amber">Framer Motion 12</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Radix UI</span><span class="stack-tag amber">tw-animate-css</span></div></div>
+          <div><div class="stack-group-label amber">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">ESLint 9</span><span class="stack-tag amber">PostCSS</span></div></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -516,7 +652,7 @@
     <div class="about-text-block">
       <p>Somos <strong>Valzar Solutions</strong>, empresa de tecnología especializada en desarrollo de software enterprise, consultoría técnica y soluciones SaaS. Operamos desde Querétaro, México, con alcance en Latinoamérica y Estados Unidos.</p>
       <p>Nuestro diferenciador es la combinación de profundidad técnica — frontend, backend y cloud — con una <strong>mentalidad de desarrollo AI-first</strong>. Aprovechamos GitHub Copilot con Model Context Protocol para entregar código más rápido, limpio y mantenible a escala enterprise.</p>
-      <p>Actualmente colaboramos en proyectos para <strong>Deloitte</strong>, con enfoque en sistemas de riesgo financiero y la nueva frontera de la ingeniería de software asistida por IA.</p>
+      <p>Desde plataformas financieras para <strong>Deloitte</strong> hasta SaaS locales para negocios de Querétaro, entregamos soluciones que escalan con las necesidades del cliente.</p>
     </div>
   </div>
   <div>
@@ -525,8 +661,8 @@
       <div class="credential-row"><span class="cred-label">Ubicación</span><span class="cred-value">Querétaro, México</span></div>
       <div class="credential-row"><span class="cred-label">Cliente Actual</span><span class="cred-value">Deloitte</span></div>
       <div class="credential-row"><span class="cred-label">Stack Principal</span><span class="cred-value">.NET · React · Azure</span></div>
-      <div class="credential-row"><span class="cred-label">Plataformas Cloud</span><span class="cred-value">Azure · AWS · DevOps</span></div>
-      <div class="credential-row"><span class="cred-label">Enfoque</span><span class="cred-value">Ingeniería con IA</span></div>
+      <div class="credential-row"><span class="cred-label">SaaS Stack</span><span class="cred-value">Next.js · Tailwind · Vercel</span></div>
+      <div class="credential-row"><span class="cred-label">Plataformas Cloud</span><span class="cred-value">Azure · AWS · Vercel</span></div>
       <div class="credential-row"><span class="cred-label">Disponibilidad</span><span class="cred-value">Consultoría Disponible</span></div>
       <div class="credential-row"><span class="cred-label">Idiomas</span><span class="cred-value">Español · Inglés</span></div>
     </div>
@@ -560,7 +696,7 @@
   // Fade-up animations
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   // Nav active state
@@ -593,12 +729,18 @@
     ]
   };
 
+  const AMBER_IDS = ['savqro', 'cafeteria'];
+
   function renderGallery(id) {
     const imgs = galleries[id];
     if (!imgs || !imgs.length) return;
 
     const galleryEl = document.getElementById('gallery-' + id);
+    if (!galleryEl) return;
     const cur = parseInt(galleryEl.dataset.cur || '0');
+    const isAmber = AMBER_IDS.includes(id);
+    const hoverClass = isAmber ? 'amber-hover' : '';
+    const dotClass = isAmber ? 'amber' : '';
 
     const slidesHTML = imgs.map(src =>
       `<div class="gallery-slide"><img src="${src}" alt="Captura" loading="lazy"/></div>`
@@ -607,14 +749,14 @@
     const dotsHTML = imgs.length > 1
       ? `<div class="gallery-controls">
           ${imgs.map((_, i) =>
-            `<button class="gallery-dot${i===cur?' active':''}" onclick="goTo('${id}',${i})"></button>`
+            `<button class="gallery-dot ${dotClass}${i===cur?' active':''}" onclick="goTo('${id}',${i})"></button>`
           ).join('')}
         </div>`
       : '';
 
     const arrowsHTML = imgs.length > 1
-      ? `<button class="gallery-arrow prev" onclick="prev('${id}')">&#8249;</button>
-         <button class="gallery-arrow next" onclick="next('${id}')">&#8250;</button>`
+      ? `<button class="gallery-arrow prev ${hoverClass}" onclick="prev('${id}')">&#8249;</button>
+         <button class="gallery-arrow next ${hoverClass}" onclick="next('${id}')">&#8250;</button>`
       : '';
 
     galleryEl.innerHTML = `
@@ -654,6 +796,7 @@
     goTo(id, cur === imgs.length - 1 ? 0 : cur + 1);
   }
 
+  // Render galleries with static images
   Object.keys(galleries).forEach(renderGallery);
 
   // Touch swipe support
