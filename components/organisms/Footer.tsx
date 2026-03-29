@@ -56,6 +56,26 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Portafolio */}
+          <div>
+            <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
+              <div className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-emerald-500 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+              Portafolio
+            </h3>
+            <ul className="space-y-3">
+                <li key={10}>
+                  <a
+                    href="/portafolio.html"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 bg-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    Portafolio
+                  </a>
+                </li>
+            </ul>
+          </div>
+
+
           {/* Empresa */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">

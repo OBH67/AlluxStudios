@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Omar Arroyo — Ingeniero Full-Stack & Arquitecto Cloud | Valzar Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #0B0B0B;
+    --surface:   #111111;
+    --surface2:  #161616;
+    --border:    #1F1F1F;
+    --border2:   #2A2A2A;
+    --text:      #EDE9E0;
+    --text-dim:  #7A7570;
+    --text-mid:  #B8B3AA;
+    --gold:      #4C9AFF;
+    --gold-dim:  #2D5F9D;
+    --gold-glow: rgba(76,154,255,0.16);
+    --green:     #3DB88B;
+    --nav-height: 76px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .wrap { position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(11,11,11,0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 600; color: var(--bg); flex-shrink: 0;
+  }
+  .nav-brand-text { display: flex; flex-direction: column; gap: 2px; }
+  .nav-brand-name { font-size: 0.82rem; font-weight: 500; color: var(--text); letter-spacing: 0.06em; line-height: 1; }
+  .nav-brand-sub { font-family: 'Fira Code', monospace; font-size: 0.58rem; color: var(--gold-dim); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 0.77rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .btn-nav { display: inline-flex; align-items: center; gap: 8px; padding: 9px 22px; border: 1px solid var(--gold-dim); color: var(--gold); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+  .btn-nav:hover { background: var(--gold-glow); border-color: var(--gold); }
+
+  /* HERO */
+  #hero { min-height: calc(100vh - var(--nav-height)); display: flex; flex-direction: column; justify-content: center; padding: calc(var(--nav-height) + 32px) 60px 80px; position: relative; overflow: hidden; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .hero-eyebrow-line { width: 42px; height: 1px; background: var(--gold); }
+  .hero-eyebrow-text { font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.6rem, 8vw, 7.5rem); font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-desc { max-width: 560px; font-size: 1.05rem; color: var(--text-mid); font-weight: 300; line-height: 1.7; margin-bottom: 48px; }
+  .hero-meta { display: flex; gap: 48px; align-items: flex-start; }
+  .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--text); line-height: 1; }
+  .hero-stat-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-top: 6px; }
+  .hero-deco { position: absolute; right: -20px; bottom: -40px; font-family: 'Cormorant Garamond', serif; font-size: 28vw; font-weight: 300; color: transparent; -webkit-text-stroke: 1px var(--border2); line-height: 1; pointer-events: none; user-select: none; opacity: 0.6; }
+  .scroll-hint { position: absolute; bottom: 36px; right: 60px; display: flex; align-items: center; gap: 12px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); writing-mode: vertical-rl; }
+  .scroll-hint::before { content: ''; width: 1px; height: 50px; background: linear-gradient(to bottom, transparent, var(--gold-dim)); }
+
+  /* SECTION COMMON */
+  section { padding: 120px 60px; position: relative; }
+  .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 64px; }
+  .section-label-num { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; }
+  .section-label-line { width: 32px; height: 1px; background: var(--border2); }
+  .section-label-text { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.15; margin-bottom: 20px; }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* EXPERTISE */
+  #expertise { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .expertise-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 60px; }
+  .expertise-card { background: var(--surface2); padding: 40px 32px; transition: background 0.3s; position: relative; overflow: hidden; }
+  .expertise-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform 0.4s; }
+  .expertise-card:hover { background: var(--bg); }
+  .expertise-card:hover::before { transform: scaleX(1); }
+  .expertise-icon { width: 36px; height: 36px; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--gold); font-size: 0.9rem; }
+  .expertise-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; margin-bottom: 14px; color: var(--text); }
+  .expertise-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+  .expertise-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+  .tech-tag { font-family: 'Fira Code', monospace; font-size: 0.65rem; padding: 4px 9px; border: 1px solid var(--border2); color: var(--text-dim); letter-spacing: 0.04em; transition: all 0.2s; }
+  .tech-tag:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  /* MARQUEE */
+  .marquee-section { padding: 28px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface2); position: relative; z-index: 1; }
+  .marquee-track { display: flex; gap: 0; white-space: nowrap; animation: marquee 28s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item { display: inline-flex; align-items: center; gap: 28px; padding: 0 40px; font-family: 'Fira Code', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
+  .marquee-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-dim); }
+
+  /* PROJECTS */
+  #projects { background: var(--bg); }
+  .projects-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .project-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s; position: relative; }
+  .project-card:hover { border-color: var(--border2); }
+  .project-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  /* GALLERY */
+  .project-gallery { width: 100%; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: var(--surface2); }
+
+  .gallery-slides { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .gallery-slide { min-width: 100%; height: 340px; position: relative; overflow: hidden; }
+  .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .project-card:hover .gallery-slide img { transform: scale(1.03); }
+
+  .gallery-placeholder { width: 100%; height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: var(--surface2); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.3s; position: relative; overflow: hidden; }
+  .gallery-placeholder::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.01) 20px,rgba(255,255,255,0.01) 40px); }
+  .gallery-placeholder:hover { background: #181818; }
+  .placeholder-icon { width: 56px; height: 56px; border: 1px dashed var(--border2); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 1.4rem; transition: all 0.3s; }
+  .gallery-placeholder:hover .placeholder-icon { border-color: var(--gold-dim); color: var(--gold); }
+  .placeholder-text { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+  .placeholder-sub { font-family: 'Fira Code', monospace; font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.1em; margin-top: -8px; }
+
+  .gallery-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; z-index: 10; }
+  .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.2s; border: none; padding: 0; }
+  .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
+
+  .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: rgba(11,11,11,0.72); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); font-size: 1.1rem; transition: all 0.2s; z-index: 10; backdrop-filter: blur(8px); opacity: 0; }
+  .project-gallery:hover .gallery-arrow { opacity: 1; }
+  .gallery-arrow:hover { background: rgba(76,154,255,0.15); border-color: var(--gold); color: var(--gold); }
+  .gallery-arrow.prev { left: 16px; }
+  .gallery-arrow.next { right: 16px; }
+
+  .btn-add-img { position: absolute; top: 14px; right: 14px; z-index: 10; display: flex; align-items: center; gap: 7px; padding: 7px 14px; background: rgba(11,11,11,0.78); border: 1px solid var(--border2); color: var(--text-dim); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(8px); font-family: 'Outfit', sans-serif; opacity: 0; }
+  .project-gallery:hover .btn-add-img { opacity: 1; }
+  .btn-add-img:hover { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-glow); }
+
+  .img-upload-input { display: none; }
+
+  /* PROJECT CONTENT */
+  .project-content { display: grid; grid-template-columns: 260px 1fr 240px; }
+  .project-aside { padding: 36px 30px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; }
+  .project-num { font-family: 'Fira Code', monospace; font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.15em; margin-bottom: 20px; }
+  .project-company { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 10px; }
+  .project-period { font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 16px; }
+
+  .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border: 1px solid var(--border2); color: var(--text-dim); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin-bottom: 20px; font-family: 'Outfit', sans-serif; }
+  .project-link:hover { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-glow); }
+  .project-link svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  .project-status { display: inline-flex; align-items: center; gap: 8px; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+  .project-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .project-status.ended { color: var(--text-dim); }
+  .project-status.ended .project-status-dot { background: var(--text-dim); box-shadow: none; animation: none; }
+
+  .project-body { padding: 36px 40px; display: flex; flex-direction: column; gap: 18px; }
+  .project-role-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--border2); width: fit-content; }
+  .project-role-badge span { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .project-role-badge .role-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--text); line-height: 1.25; }
+  .project-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.75; max-width: 520px; }
+  .project-highlights { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+  .highlight-item { display: flex; align-items: flex-start; gap: 14px; font-size: 0.83rem; color: var(--text-dim); line-height: 1.5; }
+  .highlight-item::before { content: '→'; color: var(--gold); flex-shrink: 0; margin-top: 1px; font-size: 0.75rem; }
+
+  .project-stack { padding: 36px 28px; border-left: 1px solid var(--border); display: flex; flex-direction: column; gap: 24px; }
+  .stack-group-label { font-family: 'Fira Code', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 10px; }
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-tag { font-family: 'Fira Code', monospace; font-size: 0.63rem; padding: 5px 10px; background: var(--surface2); border: 1px solid var(--border2); color: var(--text-mid); transition: all 0.2s; letter-spacing: 0.03em; }
+  .stack-tag:hover { color: var(--gold); border-color: var(--gold-dim); background: var(--gold-glow); }
+  .stack-tag.highlight { color: var(--gold); border-color: var(--gold-dim); }
+
+  /* ABOUT */
+  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text-block p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; }
+  .about-text-block p strong { color: var(--text); font-weight: 500; }
+  .about-credentials { display: flex; flex-direction: column; gap: 1px; }
+  .credential-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .credential-row:first-child { border-top: 1px solid var(--border); }
+  .cred-label { font-size: 0.73rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .cred-value { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text); }
+  .cred-link { color: var(--gold); text-decoration: none; }
+  .cred-link:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  #contact { background: var(--bg); text-align: center; display: flex; flex-direction: column; align-items: center; padding: 140px 60px 100px; }
+  #contact .section-label { justify-content: center; }
+  .contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 300; line-height: 1.1; max-width: 680px; margin: 0 auto 48px; }
+  .contact-title em { font-style: italic; color: var(--gold); }
+  .contact-subtitle { font-size: 1rem; color: var(--text-mid); max-width: 440px; line-height: 1.7; margin-bottom: 56px; }
+  .contact-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; background: var(--gold); color: var(--bg); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; font-family: 'Outfit', sans-serif; }
+  .btn-primary:hover { background: #7FB8FF; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border: 1px solid var(--border2); color: var(--text-mid); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; font-family: 'Outfit', sans-serif; }
+  .btn-secondary:hover { border-color: var(--text-dim); color: var(--text); }
+
+  /* FOOTER */
+  footer { padding: 36px 60px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--surface); position: relative; z-index: 1; }
+  .footer-brand { font-size: 0.85rem; color: var(--text-dim); }
+  .footer-brand span { color: var(--gold); }
+  .footer-copy { font-family: 'Fira Code', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    nav { padding: 18px 30px; }
+    section { padding: 90px 30px; }
+    #hero { padding: calc(var(--nav-height) + 20px) 30px 70px; }
+    .project-content { grid-template-columns: 1fr; }
+    .project-aside { border-right: none; border-bottom: 1px solid var(--border); }
+    .project-stack { border-left: none; border-top: 1px solid var(--border); }
+    .expertise-grid { grid-template-columns: repeat(2,1fr); }
+    #about { grid-template-columns: 1fr; gap: 50px; }
+    footer { padding: 30px; }
+    .gallery-slide, .gallery-placeholder { height: 260px; }
+  }
+  @media (max-width: 680px) {
+    nav .nav-links { display: none; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .hero-meta { gap: 32px; flex-wrap: wrap; }
+    #contact { padding: 90px 24px 80px; }
+    section { padding: 80px 24px; }
+    #hero { padding: calc(var(--nav-height) + 16px) 24px 60px; }
+    .gallery-slide, .gallery-placeholder { height: 200px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.valzarsolutions.com/" target="_blank" class="nav-brand">
+    <img src="/logo.png" alt="Valzar Solutions" style="width: 34px; height: 34px; object-fit: contain;" />
+    <div class="nav-brand-text">
+      <div class="nav-brand-name">Valzar Solutions</div>
+      <div class="nav-brand-sub">valzarsolutions.com</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#expertise">Experiencia</a>
+    <a href="#projects">Proyectos</a>
+    <a href="#about">Nosotros</a>
+    <a href="#contact" class="btn-nav">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <div class="hero-eyebrow-text">Ingeniería Full-Stack &amp; Arquitectura Cloud</div>
+  </div>
+  <h1 class="hero-title fade-up">
+    Sistemas que<br/>
+    <em>escalan.</em><br/>
+    Soluciones que duran.
+  </h1>
+  <p class="hero-desc fade-up">
+    Más de 6 años entregando aplicaciones cloud de nivel enterprise en sectores financieros, inteligencia artificial y blockchain.
+    Especialistas en .NET, React y Azure — con enfoque en desarrollo aumentado con IA y arquitecturas de microservicios.
+  </p>
+  <div class="hero-meta fade-up">
+    <div><div class="hero-stat-num">6+</div><div class="hero-stat-label">Años de Experiencia</div></div>
+    <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Clientes Enterprise</div></div>
+    <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Plataformas Cloud</div></div>
+    <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Tecnologías Core</div></div>
+  </div>
+  <div class="hero-deco">VS</div>
+  <div class="scroll-hint">Deslizar</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">.NET Core <span class="dot"></span></span>
+    <span class="marquee-item">React 18 <span class="dot"></span></span>
+    <span class="marquee-item">TypeScript <span class="dot"></span></span>
+    <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
+    <span class="marquee-item">Microservicios <span class="dot"></span></span>
+    <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
+    <span class="marquee-item">SQL Server <span class="dot"></span></span>
+    <span class="marquee-item">GitHub Copilot MCP <span class="dot"></span></span>
+    <span class="marquee-item">SignalR WebSockets <span class="dot"></span></span>
+    <span class="marquee-item">GraphQL <span class="dot"></span></span>
+    <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
+    <span class="marquee-item">Entity Framework <span class="dot"></span></span>
+    <span class="marquee-item">Azure DevOps <span class="dot"></span></span>
+    <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
+    <span class="marquee-item">.NET Core <span class="dot"></span></span>
+    <span class="marquee-item">React 18 <span class="dot"></span></span>
+    <span class="marquee-item">TypeScript <span class="dot"></span></span>
+    <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
+    <span class="marquee-item">Microservicios <span class="dot"></span></span>
+    <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
+    <span class="marquee-item">SQL Server <span class="dot"></span></span>
+    <span class="marquee-item">GitHub Copilot MCP <span class="dot"></span></span>
+    <span class="marquee-item">SignalR WebSockets <span class="dot"></span></span>
+    <span class="marquee-item">GraphQL <span class="dot"></span></span>
+    <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
+    <span class="marquee-item">Entity Framework <span class="dot"></span></span>
+    <span class="marquee-item">Azure DevOps <span class="dot"></span></span>
+    <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-label">
+    <span class="section-label-num">01</span>
+    <span class="section-label-line"></span>
+    <span class="section-label-text">Disciplinas Principales</span>
+  </div>
+  <h2 class="section-title">Áreas de <em>Especialización</em></h2>
+  <p style="color:var(--text-dim);font-size:0.9rem;max-width:520px;">Equipo multidisciplinario con dominio en frontend, backend, infraestructura cloud y flujos de trabajo asistidos por IA.</p>
+  <div class="expertise-grid">
+    <div class="expertise-card fade-up">
+      <div class="expertise-icon">◈</div>
+      <div class="expertise-name">Desarrollo Frontend</div>
+      <p class="expertise-desc">Aplicaciones web responsivas de alto rendimiento con arquitectura React moderna, datos en tiempo real y sistemas UI pulidos.</p>
+      <div class="expertise-tech">
+        <span class="tech-tag">React 18</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Ant Design</span><span class="tech-tag">SignalR</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">Jest</span>
+      </div>
+    </div>
+    <div class="expertise-card fade-up">
+      <div class="expertise-icon">⬡</div>
+      <div class="expertise-name">Backend y APIs</div>
+      <p class="expertise-desc">Microservicios RESTful y GraphQL robustos con .NET Core y Node.js. Seguridad, escalabilidad y arquitectura limpia.</p>
+      <div class="expertise-tech">
+        <span class="tech-tag">.NET Core</span><span class="tech-tag">ASP.NET</span><span class="tech-tag">C#</span><span class="tech-tag">GraphQL</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span>
+      </div>
+    </div>
+    <div class="expertise-card fade-up">
+      <div class="expertise-icon">⬢</div>
+      <div class="expertise-name">Arquitectura Cloud</div>
+      <p class="expertise-desc">Soluciones cloud end-to-end en Azure y AWS. CI/CD, funciones serverless, pipelines de datos e infraestructura como código.</p>
+      <div class="expertise-tech">
+        <span class="tech-tag">Azure Functions</span><span class="tech-tag">Azure DevOps</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">Data Factory</span><span class="tech-tag">Key Vault</span>
+      </div>
+    </div>
+    <div class="expertise-card fade-up">
+      <div class="expertise-icon">✦</div>
+      <div class="expertise-name">Desarrollo con IA</div>
+      <p class="expertise-desc">GitHub Copilot con MCP para generar código SOLID-compliant, automatizar pruebas y acelerar entregas sin perder calidad.</p>
+      <div class="expertise-tech">
+        <span class="tech-tag">GitHub Copilot</span><span class="tech-tag">MCP Servers</span><span class="tech-tag">Prompt Engineering</span><span class="tech-tag">AI Workflows</span><span class="tech-tag">Snyk</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">
+    <span class="section-label-num">02</span>
+    <span class="section-label-line"></span>
+    <span class="section-label-text">Trabajo Seleccionado</span>
+  </div>
+  <h2 class="section-title" style="margin-bottom:56px;">Portafolio de <em>Proyectos</em></h2>
+
+  <div class="projects-list">
+
+    <!-- PROJECT 1: Deloitte -->
+    <div class="project-card fade-up">
+      <div class="project-gallery" id="gallery-deloitte"></div>
+      <div class="project-content">
+        <div class="project-aside">
+          <div>
+            <div class="project-num">Proyecto / 01</div>
+            <div class="project-company">Deloitte</div>
+            <div class="project-period">2024 — Presente</div>
+            <a href="https://www.deloitte.com/us/en.html?icid=site_selector_us" target="_blank" class="project-link">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver sitio web
+            </a>
+          </div>
+          <div class="project-status"><div class="project-status-dot"></div>Activo</div>
+        </div>
+        <div class="project-body">
+          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack Aumentado con IA</span></div>
+          <div class="project-title">Plataforma Enterprise de Riesgo Financiero y Auditoría</div>
+          <p class="project-desc">Sistema de detección de conflictos para identificar riesgos entre actividades WBS, intereses financieros y entidades restringidas dentro de un entorno de auditoría empresarial a gran escala. Construido con React 18, .NET Core y Azure.</p>
+          <div class="project-highlights">
+            <div class="highlight-item">UI de detección de conflictos para actividades WBS y entidades de riesgo financiero con filtros y reportes en tiempo real</div>
+            <div class="highlight-item">Microservicios RESTful en ASP.NET Core con integración de datos de mercado near real-time</div>
+            <div class="highlight-item">GitHub Copilot + MCP para generar código SOLID-compliant, pruebas unitarias y documentación automática</div>
+            <div class="highlight-item">Azure Functions para procesamiento background; App Insights para observabilidad; Snyk para seguridad</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Ant Design</span><span class="stack-tag">Jest</span></div></div>
+          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">ASP.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">NUnit</span><span class="stack-tag">Swagger</span><span class="stack-tag">FluentMigrator</span></div></div>
+          <div><div class="stack-group-label">Cloud y IA</div><div class="stack-tags"><span class="stack-tag highlight">Azure Functions</span><span class="stack-tag">Key Vault</span><span class="stack-tag">App Insights</span><span class="stack-tag highlight">GitHub Copilot MCP</span><span class="stack-tag">Snyk</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Arroyo Consulting -->
+    <div class="project-card fade-up">
+      <div class="project-gallery" id="gallery-arroyo"></div>
+      <div class="project-content">
+        <div class="project-aside">
+          <div>
+            <div class="project-num">Proyecto / 02</div>
+            <div class="project-company">Arroyo Consulting</div>
+            <div class="project-period">2021 — 2024</div>
+            <a href="https://arroyoconsulting.net" target="_blank" class="project-link">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver sitio web
+            </a>
+          </div>
+          <div class="project-status ended"><div class="project-status-dot"></div>Completado</div>
+        </div>
+        <div class="project-body">
+          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack &amp; Ingeniero Cloud</span></div>
+          <div class="project-title">Plataforma de Gestión Financiera y Datos de Mercado en Tiempo Real</div>
+          <p class="project-desc">Dos aplicaciones enterprise interconectadas: un sistema de gestión de auditoría financiera y un dashboard de datos de mercado en vivo — ambos sobre microservicios con comunicación WebSocket en tiempo real mediante SignalR.</p>
+          <div class="project-highlights">
+            <div class="highlight-item">Dashboards financieros en tiempo real con SignalR WebSockets y feeds de datos de mercado configurables</div>
+            <div class="highlight-item">Backend completo en microservicios .NET Core con Service Bus, Entity Framework y LINQ</div>
+            <div class="highlight-item">Pipeline ETL en Azure Data Factory; Blob Storage; CI/CD vía Azure Pipelines</div>
+            <div class="highlight-item">Optimización SQL Server a escala enterprise: stored procedures, vistas, jobs y funciones</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">SignalR</span><span class="stack-tag">SCSS</span><span class="stack-tag">lodash</span></div></div>
+          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">Entity Framework</span><span class="stack-tag">Service Bus</span></div></div>
+          <div><div class="stack-group-label">Cloud y Datos</div><div class="stack-tags"><span class="stack-tag highlight">Azure Pipelines</span><span class="stack-tag highlight">Data Factory</span><span class="stack-tag">Azure SQL</span><span class="stack-tag">Blob Storage</span><span class="stack-tag">App Insights</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Woonkly -->
+    <div class="project-card fade-up">
+      <div class="project-gallery" id="gallery-woonkly"></div>
+      <div class="project-content">
+        <div class="project-aside">
+          <div>
+            <div class="project-num">Proyecto / 03</div>
+            <div class="project-company">Woonkly</div>
+            <div class="project-period">2021</div>
+            <a href="https://woonkly.ai" target="_blank" class="project-link">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
+              Ver plataforma
+            </a>
+          </div>
+          <div class="project-status ended"><div class="project-status-dot"></div>Completado</div>
+        </div>
+        <div class="project-body">
+          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack AWS</span></div>
+          <div class="project-title">Exchange de Criptomonedas y Plataforma de Creadores con IA</div>
+          <p class="project-desc">Infraestructura full-stack completa para Woonkly, exchange de criptomonedas en Estonia y plataforma de creación de contenido con IA. Diseño del sistema de autenticación, dashboards de administración y APIs serverless en AWS.</p>
+          <div class="project-highlights">
+            <div class="highlight-item">SPA con React 18 + TypeScript y Tailwind CSS para autenticación de administradores y dashboard de usuarios</div>
+            <div class="highlight-item">AWS Cognito User Pool para gestión segura de identidades; APIs REST + GraphQL vía AppSync y API Gateway</div>
+            <div class="highlight-item">Lambda serverless para HTTP, triggers DynamoDB y procesamiento asíncrono</div>
+            <div class="highlight-item">Pruebas unitarias con Jest; pipeline de despliegue con AWS Amplify desde el inicio</div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">Jest</span></div></div>
+          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag highlight">GraphQL</span><span class="stack-tag">AppSync</span></div></div>
+          <div><div class="stack-group-label">AWS</div><div class="stack-tags"><span class="stack-tag highlight">Lambda</span><span class="stack-tag highlight">DynamoDB</span><span class="stack-tag">Cognito</span><span class="stack-tag">API Gateway</span><span class="stack-tag">Amplify</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <div class="section-label">
+      <span class="section-label-num">03</span>
+      <span class="section-label-line"></span>
+      <span class="section-label-text">Acerca de</span>
+    </div>
+    <h2 class="section-title" style="margin-bottom:36px;">Diseñados para la <em>complejidad</em></h2>
+    <div class="about-text-block">
+      <p>Somos <strong>Valzar Solutions</strong>, empresa de tecnología especializada en desarrollo de software enterprise, consultoría técnica y soluciones SaaS. Operamos desde Querétaro, México, con alcance en Latinoamérica y Estados Unidos.</p>
+      <p>Nuestro diferenciador es la combinación de profundidad técnica — frontend, backend y cloud — con una <strong>mentalidad de desarrollo AI-first</strong>. Aprovechamos GitHub Copilot con Model Context Protocol para entregar código más rápido, limpio y mantenible a escala enterprise.</p>
+      <p>Actualmente colaboramos en proyectos para <strong>Deloitte</strong>, con enfoque en sistemas de riesgo financiero y la nueva frontera de la ingeniería de software asistida por IA.</p>
+    </div>
+  </div>
+  <div>
+    <div class="about-credentials">
+      <div class="credential-row"><span class="cred-label">Empresa</span><span class="cred-value"><a href="https://www.valzarsolutions.com/" target="_blank" class="cred-link">Valzar Solutions</a></span></div>
+      <div class="credential-row"><span class="cred-label">Ubicación</span><span class="cred-value">Querétaro, México</span></div>
+      <div class="credential-row"><span class="cred-label">Cliente Actual</span><span class="cred-value">Deloitte</span></div>
+      <div class="credential-row"><span class="cred-label">Stack Principal</span><span class="cred-value">.NET · React · Azure</span></div>
+      <div class="credential-row"><span class="cred-label">Plataformas Cloud</span><span class="cred-value">Azure · AWS · DevOps</span></div>
+      <div class="credential-row"><span class="cred-label">Enfoque</span><span class="cred-value">Ingeniería con IA</span></div>
+      <div class="credential-row"><span class="cred-label">Disponibilidad</span><span class="cred-value">Consultoría Disponible</span></div>
+      <div class="credential-row"><span class="cred-label">Idiomas</span><span class="cred-value">Español · Inglés</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">
+    <span class="section-label-num">04</span>
+    <span class="section-label-line"></span>
+    <span class="section-label-text">Contacto</span>
+  </div>
+  <h2 class="contact-title">¿Listo para construir algo <em>excepcional?</em></h2>
+  <p class="contact-subtitle">Disponibles para proyectos de desarrollo SaaS, consultoría técnica y arquitecturas cloud. Hablemos sobre cómo podemos ayudarte.</p>
+  <div class="contact-ctas">
+    <a href="mailto:contacto@valzarsolutions.com" class="btn-primary">Enviar Mensaje →</a>
+    <a href="https://www.valzarsolutions.com/" target="_blank" class="btn-secondary">valzarsolutions.com ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span>Valzar Solutions</span> — Portafolio de Proyectos</div>
+  <div class="footer-copy">© 2026 · Todos los derechos reservados</div>
+</footer>
+
+</div>
+
+<script>
+  // Fade-up animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(l => {
+      l.style.color = l.getAttribute('href') === '#' + current ? 'var(--text)' : 'var(--text-dim)';
+    });
+  });
+
+  // ── IMAGE GALLERY ENGINE ──
+  const galleries = {
+    deloitte: [
+      'deloitte1.png',
+      'deloitte2.png',
+      'deloitte3.png'
+    ],
+    arroyo: [
+      'arroyo1.png',
+      'arroyo2.png',
+      'arroyo3.png'
+    ],
+    woonkly: [
+      'woonkly1.png',
+      'woonkly2.png',
+      'woonkly3.png'
+    ]
+  };
+
+  function renderGallery(id) {
+    const imgs = galleries[id];
+    if (!imgs || !imgs.length) return;
+
+    const galleryEl = document.getElementById('gallery-' + id);
+    const cur = parseInt(galleryEl.dataset.cur || '0');
+
+    const slidesHTML = imgs.map(src =>
+      `<div class="gallery-slide"><img src="${src}" alt="Captura" loading="lazy"/></div>`
+    ).join('');
+
+    const dotsHTML = imgs.length > 1
+      ? `<div class="gallery-controls">
+          ${imgs.map((_, i) =>
+            `<button class="gallery-dot${i===cur?' active':''}" onclick="goTo('${id}',${i})"></button>`
+          ).join('')}
+        </div>`
+      : '';
+
+    const arrowsHTML = imgs.length > 1
+      ? `<button class="gallery-arrow prev" onclick="prev('${id}')">&#8249;</button>
+         <button class="gallery-arrow next" onclick="next('${id}')">&#8250;</button>`
+      : '';
+
+    galleryEl.innerHTML = `
+      <div class="gallery-slides" id="slides-${id}" style="transform:translateX(-${cur*100}%)">
+        ${slidesHTML}
+      </div>
+      ${dotsHTML}
+      ${arrowsHTML}
+    `;
+    galleryEl.dataset.cur = cur;
+  }
+
+  function goTo(id, index) {
+    const imgs = galleries[id];
+    if (!imgs) return;
+    const el = document.getElementById('gallery-' + id);
+    const i = Math.max(0, Math.min(index, imgs.length - 1));
+    el.dataset.cur = i;
+    const track = document.getElementById('slides-' + id);
+    if (track) track.style.transform = `translateX(-${i*100}%)`;
+    el.querySelectorAll('.gallery-dot').forEach((d, j) => d.classList.toggle('active', j===i));
+  }
+
+  function prev(id) {
+    const imgs = galleries[id];
+    if (!imgs) return;
+    const el = document.getElementById('gallery-' + id);
+    const cur = parseInt(el.dataset.cur || 0);
+    goTo(id, cur === 0 ? imgs.length - 1 : cur - 1);
+  }
+
+  function next(id) {
+    const imgs = galleries[id];
+    if (!imgs) return;
+    const el = document.getElementById('gallery-' + id);
+    const cur = parseInt(el.dataset.cur || 0);
+    goTo(id, cur === imgs.length - 1 ? 0 : cur + 1);
+  }
+
+  Object.keys(galleries).forEach(renderGallery);
+
+  // Touch swipe support
+  const touchState = {};
+  document.querySelectorAll('.project-gallery').forEach(g => {
+    const id = g.id.replace('gallery-', '');
+    g.addEventListener('touchstart', e => { touchState[id] = e.touches[0].clientX; }, { passive: true });
+    g.addEventListener('touchend', e => {
+      if (!touchState[id]) return;
+      const diff = touchState[id] - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) diff > 0 ? next(id) : prev(id);
+      delete touchState[id];
+    });
+  });
+</script>
+</body>
+</html>
