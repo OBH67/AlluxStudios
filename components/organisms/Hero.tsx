@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-blue-950 pt-20 lg:pt-0"
+      className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-blue-950 pt-28 lg:pt-24"
     >
       <HeroBackground />
 
@@ -21,7 +21,6 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <HeroHeader isVisible={isVisible} />
-            <HeroStats isVisible={isVisible} />
           </div>
 
           <HeroVisual isVisible={isVisible} />

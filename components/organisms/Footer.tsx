@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
               <div className="w-13 h-20 flex-shrink-0 overflow-visible">
-                <img src="/logo-valher-no-background.png" alt="Valzar Solutions" className="h-full w-full object-contain scale-150" />
+                <img src="/logo.png" alt="Valzar Solutions" className="h-full w-full object-contain scale-120" />
               </div>
               <div className="ml-3">
                 <span className="block text-white font-bold text-xl drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
