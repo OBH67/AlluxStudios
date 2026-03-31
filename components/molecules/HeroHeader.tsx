@@ -18,7 +18,7 @@ export default function HeroHeader({ isVisible = false }: Props) {
       </h1>
 
       <p className="max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl">
-        Transformamos tu presencia digital con soluciones modernas, claras y efectivas. Cre amos
+        Transformamos tu presencia digital con soluciones modernas, claras y efectivas. Creamos
         experiencias que conectan con tu audiencia y elevan tu marca al siguiente nivel.
       </p>
 
