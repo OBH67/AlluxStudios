@@ -82,6 +82,15 @@
   .nav-links a:hover { color: var(--text); }
   .btn-nav { display: inline-flex; align-items: center; gap: 8px; padding: 9px 22px; border: 1px solid var(--gold-dim); color: var(--gold); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
   .btn-nav:hover { background: var(--gold-glow); border-color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+
+  /* LANGUAGE SWITCH */
+  .lang-switch { display: inline-flex; align-items: center; gap: 6px; font-family: 'Fira Code', monospace; font-size: 0.7rem; letter-spacing: 0.14em; }
+  .lang-btn { background: none; border: none; border-bottom: 1px solid transparent; padding: 4px 3px; font: inherit; letter-spacing: inherit; color: var(--text-dim); cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+  .lang-btn:hover { color: var(--text); }
+  .lang-btn[aria-pressed="true"] { color: var(--gold); border-bottom-color: var(--gold); }
+  .lang-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+  .lang-sep { color: var(--border2); user-select: none; }
 
   /* HERO */
   #hero { min-height: calc(100vh - var(--nav-height)); display: flex; flex-direction: column; justify-content: center; padding: calc(var(--nav-height) + 32px) 60px 80px; position: relative; overflow: hidden; }
@@ -288,6 +297,8 @@
   }
   @media (max-width: 680px) {
     nav .nav-links { display: none; }
+    .nav-right { gap: 0; }
+    .lang-btn { padding: 10px 8px; }
     .expertise-grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 32px; flex-wrap: wrap; }
     #contact { padding: 90px 24px 80px; }
@@ -309,11 +320,18 @@
       <div class="nav-brand-sub">valzarsolutions.com</div>
     </div>
   </a>
+  <div class="nav-right">
   <div class="nav-links">
-    <a href="#expertise">Experiencia</a>
-    <a href="#projects">Proyectos</a>
-    <a href="#about">Nosotros</a>
-    <a href="#contact" class="btn-nav">Contacto</a>
+    <a href="#expertise" data-i18n="nav.link-expertise.1">Experiencia</a>
+    <a href="#projects" data-i18n="nav.link-projects.1">Proyectos</a>
+    <a href="#about" data-i18n="nav.link-about.1">Nosotros</a>
+    <a href="#contact" class="btn-nav" data-i18n="common.contacto">Contacto</a>
+  </div>
+  <div class="lang-switch" role="group" aria-label="Idioma">
+    <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+    <span class="lang-sep" aria-hidden="true">/</span>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  </div>
   </div>
 </nav>
 
@@ -321,25 +339,25 @@
 <section id="hero">
   <div class="hero-eyebrow">
     <div class="hero-eyebrow-line"></div>
-    <div class="hero-eyebrow-text">Ingeniería Full-Stack &amp; Arquitectura Cloud</div>
+    <div class="hero-eyebrow-text" data-i18n="hero.hero-eyebrow-text.1">Ingeniería Full-Stack &amp; Arquitectura Cloud</div>
   </div>
-  <h1 class="hero-title fade-up">
+  <h1 class="hero-title fade-up" data-i18n="hero.hero-title.1">
     Sistemas que<br/>
     <em>escalan.</em><br/>
     Soluciones que duran.
   </h1>
-  <p class="hero-desc fade-up">
+  <p class="hero-desc fade-up" data-i18n="hero.hero-desc.1">
     Más de 6 años entregando aplicaciones cloud de nivel enterprise en sectores financieros, inteligencia artificial y blockchain.
     Especialistas en .NET, React y Azure — con enfoque en desarrollo aumentado con IA y arquitecturas de microservicios.
   </p>
   <div class="hero-meta fade-up">
-    <div><div class="hero-stat-num">6+</div><div class="hero-stat-label">Años de Experiencia</div></div>
-    <div><div class="hero-stat-num">8</div><div class="hero-stat-label">Proyectos en Portafolio</div></div>
-    <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Plataformas Cloud</div></div>
-    <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Tecnologías Core</div></div>
+    <div><div class="hero-stat-num">6+</div><div class="hero-stat-label" data-i18n="hero.hero-stat-label.1">Años de Experiencia</div></div>
+    <div><div class="hero-stat-num">8</div><div class="hero-stat-label" data-i18n="hero.hero-stat-label.2">Proyectos en Portafolio</div></div>
+    <div><div class="hero-stat-num">5</div><div class="hero-stat-label" data-i18n="common.plataformas-cloud">Plataformas Cloud</div></div>
+    <div><div class="hero-stat-num">15+</div><div class="hero-stat-label" data-i18n="hero.hero-stat-label.3">Tecnologías Core</div></div>
   </div>
   <div class="hero-deco">VS</div>
-  <div class="scroll-hint">Deslizar</div>
+  <div class="scroll-hint" data-i18n="hero.scroll-hint.1">Deslizar</div>
 </section>
 
 <!-- MARQUEE -->
@@ -350,7 +368,7 @@
     <span class="marquee-item">Next.js <span class="dot"></span></span>
     <span class="marquee-item">TypeScript <span class="dot"></span></span>
     <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
-    <span class="marquee-item">Microservicios <span class="dot"></span></span>
+    <span class="marquee-item" data-i18n="common.microservicios">Microservicios <span class="dot"></span></span>
     <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
     <span class="marquee-item">Tailwind CSS 4 <span class="dot"></span></span>
     <span class="marquee-item">Supabase + PostgreSQL <span class="dot"></span></span>
@@ -360,13 +378,13 @@
     <span class="marquee-item">GraphQL <span class="dot"></span></span>
     <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
     <span class="marquee-item">Framer Motion <span class="dot"></span></span>
-    <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
+    <span class="marquee-item" data-i18n="common.desarrollo-con-ia">Desarrollo con IA <span class="dot"></span></span>
     <span class="marquee-item">.NET Core <span class="dot"></span></span>
     <span class="marquee-item">React 18 / 19 <span class="dot"></span></span>
     <span class="marquee-item">Next.js <span class="dot"></span></span>
     <span class="marquee-item">TypeScript <span class="dot"></span></span>
     <span class="marquee-item">Azure Cloud <span class="dot"></span></span>
-    <span class="marquee-item">Microservicios <span class="dot"></span></span>
+    <span class="marquee-item" data-i18n="common.microservicios">Microservicios <span class="dot"></span></span>
     <span class="marquee-item">AWS Lambda <span class="dot"></span></span>
     <span class="marquee-item">Tailwind CSS 4 <span class="dot"></span></span>
     <span class="marquee-item">Supabase + PostgreSQL <span class="dot"></span></span>
@@ -376,7 +394,7 @@
     <span class="marquee-item">GraphQL <span class="dot"></span></span>
     <span class="marquee-item">CI/CD Pipelines <span class="dot"></span></span>
     <span class="marquee-item">Framer Motion <span class="dot"></span></span>
-    <span class="marquee-item">Desarrollo con IA <span class="dot"></span></span>
+    <span class="marquee-item" data-i18n="common.desarrollo-con-ia">Desarrollo con IA <span class="dot"></span></span>
   </div>
 </div>
 
@@ -385,39 +403,39 @@
   <div class="section-label">
     <span class="section-label-num">01</span>
     <span class="section-label-line"></span>
-    <span class="section-label-text">Disciplinas Principales</span>
+    <span class="section-label-text" data-i18n="expertise.section-label-text.1">Disciplinas Principales</span>
   </div>
-  <h2 class="section-title">Áreas de <em>Especialización</em></h2>
-  <p style="color:var(--text-dim);font-size:0.9rem;max-width:520px;">Equipo multidisciplinario con dominio en frontend, backend, infraestructura cloud y flujos de trabajo asistidos por IA.</p>
+  <h2 class="section-title" data-i18n="expertise.section-title.1">Áreas de <em>Especialización</em></h2>
+  <p style="color:var(--text-dim);font-size:0.9rem;max-width:520px;" data-i18n="expertise.intro.1">Equipo multidisciplinario con dominio en frontend, backend, infraestructura cloud y flujos de trabajo asistidos por IA.</p>
   <div class="expertise-grid">
     <div class="expertise-card fade-up">
       <div class="expertise-icon">◈</div>
-      <div class="expertise-name">Desarrollo Frontend</div>
-      <p class="expertise-desc">Aplicaciones web responsivas de alto rendimiento con React y Next.js, datos en tiempo real y sistemas UI pulidos con Framer Motion.</p>
+      <div class="expertise-name" data-i18n="expertise.expertise-name.1">Desarrollo Frontend</div>
+      <p class="expertise-desc" data-i18n="expertise.expertise-desc.1">Aplicaciones web responsivas de alto rendimiento con React y Next.js, datos en tiempo real y sistemas UI pulidos con Framer Motion.</p>
       <div class="expertise-tech">
         <span class="tech-tag">React 18/19</span><span class="tech-tag">Next.js</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Tailwind CSS 4</span><span class="tech-tag">Framer Motion</span><span class="tech-tag">shadcn/ui</span>
       </div>
     </div>
     <div class="expertise-card fade-up">
       <div class="expertise-icon">⬡</div>
-      <div class="expertise-name">Backend y APIs</div>
-      <p class="expertise-desc">Microservicios RESTful y GraphQL robustos con .NET Core y Node.js. Seguridad, escalabilidad y arquitectura limpia.</p>
+      <div class="expertise-name" data-i18n="expertise.expertise-name.2">Backend y APIs</div>
+      <p class="expertise-desc" data-i18n="expertise.expertise-desc.2">Microservicios RESTful y GraphQL robustos con .NET Core y Node.js. Seguridad, escalabilidad y arquitectura limpia.</p>
       <div class="expertise-tech">
         <span class="tech-tag">.NET Core</span><span class="tech-tag">ASP.NET</span><span class="tech-tag">C#</span><span class="tech-tag">GraphQL</span><span class="tech-tag">Node.js</span><span class="tech-tag">Express.js</span><span class="tech-tag">Supabase</span><span class="tech-tag">Stripe</span>
       </div>
     </div>
     <div class="expertise-card fade-up">
       <div class="expertise-icon">⬢</div>
-      <div class="expertise-name">Arquitectura Cloud</div>
-      <p class="expertise-desc">Soluciones cloud end-to-end en Azure y AWS. CI/CD, funciones serverless, pipelines de datos e infraestructura como código.</p>
+      <div class="expertise-name" data-i18n="expertise.expertise-name.3">Arquitectura Cloud</div>
+      <p class="expertise-desc" data-i18n="expertise.expertise-desc.3">Soluciones cloud end-to-end en Azure y AWS. CI/CD, funciones serverless, pipelines de datos e infraestructura como código.</p>
       <div class="expertise-tech">
         <span class="tech-tag">Azure Functions</span><span class="tech-tag">Azure DevOps</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">Data Factory</span><span class="tech-tag">Vercel</span><span class="tech-tag">Cloudflare R2</span>
       </div>
     </div>
     <div class="expertise-card fade-up">
       <div class="expertise-icon">✦</div>
-      <div class="expertise-name">Desarrollo con IA</div>
-      <p class="expertise-desc">GitHub Copilot con MCP para generar código SOLID-compliant, automatizar pruebas y acelerar entregas sin perder calidad.</p>
+      <div class="expertise-name" data-i18n="expertise.expertise-name.4">Desarrollo con IA</div>
+      <p class="expertise-desc" data-i18n="expertise.expertise-desc.4">GitHub Copilot con MCP para generar código SOLID-compliant, automatizar pruebas y acelerar entregas sin perder calidad.</p>
       <div class="expertise-tech">
         <span class="tech-tag">GitHub Copilot</span><span class="tech-tag">MCP Servers</span><span class="tech-tag">Prompt Engineering</span><span class="tech-tag">AI Workflows</span><span class="tech-tag">Snyk</span>
       </div>
@@ -430,9 +448,9 @@
   <div class="section-label">
     <span class="section-label-num">02</span>
     <span class="section-label-line"></span>
-    <span class="section-label-text">Trabajo Seleccionado</span>
+    <span class="section-label-text" data-i18n="projects.section-label-text.1">Trabajo Seleccionado</span>
   </div>
-  <h2 class="section-title" style="margin-bottom:56px;">Portafolio de <em>Proyectos</em></h2>
+  <h2 class="section-title" style="margin-bottom:56px;" data-i18n="projects.section-title.1">Portafolio de <em>Proyectos</em></h2>
 
   <div class="projects-list">
 
@@ -442,32 +460,32 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num">Proyecto / 01</div>
+            <div class="project-num" data-i18n="p1.project-num.1">Proyecto / 01</div>
             <div class="project-company">Deloitte</div>
-            <div class="project-period">2024 — Presente</div>
+            <div class="project-period" data-i18n="p1.project-period.1">2024 — Presente</div>
             <a href="https://www.deloitte.com/us/en.html" target="_blank" class="project-link">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver sitio web
+              <span data-i18n="common.ver-sitio-web">Ver sitio web</span>
             </a>
           </div>
-          <div class="project-status"><div class="project-status-dot"></div>Activo</div>
+          <div class="project-status"><div class="project-status-dot"></div><span data-i18n="p1.project-status.1">Activo</span></div>
         </div>
         <div class="project-body">
-          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack Aumentado con IA</span></div>
-          <div class="project-title">Plataforma Enterprise de Riesgo Financiero y Auditoría</div>
-          <p class="project-desc">Sistema de detección de conflictos para identificar riesgos entre actividades WBS, intereses financieros y entidades restringidas dentro de un entorno de auditoría empresarial a gran escala. Construido con React 18, .NET Core y Azure.</p>
-          <p class="project-desc">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
+          <div class="project-role-badge"><span class="role-dot"></span><span data-i18n="p1.project-role-badge.1">Desarrollador Full-Stack Aumentado con IA</span></div>
+          <div class="project-title" data-i18n="p1.project-title.1">Plataforma Enterprise de Riesgo Financiero y Auditoría</div>
+          <p class="project-desc" data-i18n="p1.project-desc.1">Sistema de detección de conflictos para identificar riesgos entre actividades WBS, intereses financieros y entidades restringidas dentro de un entorno de auditoría empresarial a gran escala. Construido con React 18, .NET Core y Azure.</p>
+          <p class="project-desc" data-i18n="common.public-only-notice">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
           <div class="project-highlights">
-            <div class="highlight-item">UI de detección de conflictos para actividades WBS y entidades de riesgo financiero con filtros y reportes en tiempo real</div>
-            <div class="highlight-item">Microservicios RESTful en ASP.NET Core con integración de datos de mercado near real-time</div>
-            <div class="highlight-item">GitHub Copilot + MCP para generar código SOLID-compliant, pruebas unitarias y documentación automática</div>
-            <div class="highlight-item">Azure Functions para procesamiento background; App Insights para observabilidad; Snyk para seguridad</div>
+            <div class="highlight-item" data-i18n="p1.highlight-item.1">UI de detección de conflictos para actividades WBS y entidades de riesgo financiero con filtros y reportes en tiempo real</div>
+            <div class="highlight-item" data-i18n="p1.highlight-item.2">Microservicios RESTful en ASP.NET Core con integración de datos de mercado near real-time</div>
+            <div class="highlight-item" data-i18n="p1.highlight-item.3">GitHub Copilot + MCP para generar código SOLID-compliant, pruebas unitarias y documentación automática</div>
+            <div class="highlight-item" data-i18n="p1.highlight-item.4">Azure Functions para procesamiento background; App Insights para observabilidad; Snyk para seguridad</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Ant Design</span><span class="stack-tag">Jest</span></div></div>
-          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">ASP.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">NUnit</span><span class="stack-tag">Swagger</span><span class="stack-tag">FluentMigrator</span></div></div>
-          <div><div class="stack-group-label">Cloud y IA</div><div class="stack-tags"><span class="stack-tag highlight">Azure Functions</span><span class="stack-tag">Key Vault</span><span class="stack-tag">App Insights</span><span class="stack-tag highlight">GitHub Copilot MCP</span><span class="stack-tag">Snyk</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.frontend">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Ant Design</span><span class="stack-tag">Jest</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.backend">Backend</div><div class="stack-tags"><span class="stack-tag highlight">ASP.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">NUnit</span><span class="stack-tag">Swagger</span><span class="stack-tag">FluentMigrator</span></div></div>
+          <div><div class="stack-group-label" data-i18n="p1.stack-group-label.1">Cloud y IA</div><div class="stack-tags"><span class="stack-tag highlight">Azure Functions</span><span class="stack-tag">Key Vault</span><span class="stack-tag">App Insights</span><span class="stack-tag highlight">GitHub Copilot MCP</span><span class="stack-tag">Snyk</span></div></div>
         </div>
       </div>
     </div>
@@ -478,32 +496,32 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num">Proyecto / 02</div>
+            <div class="project-num" data-i18n="p2.project-num.1">Proyecto / 02</div>
             <div class="project-company">Arroyo Consulting</div>
             <div class="project-period">2021 — 2024</div>
             <a href="https://arroyoconsulting.net" target="_blank" class="project-link">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver sitio web
+              <span data-i18n="common.ver-sitio-web">Ver sitio web</span>
             </a>
           </div>
-          <div class="project-status ended"><div class="project-status-dot"></div>Completado</div>
+          <div class="project-status ended"><div class="project-status-dot"></div><span data-i18n="common.completado">Completado</span></div>
         </div>
         <div class="project-body">
-          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack &amp; Ingeniero Cloud</span></div>
-          <div class="project-title">Plataforma de Gestión Financiera y Datos de Mercado en Tiempo Real</div>
-          <p class="project-desc">Dos aplicaciones enterprise interconectadas: un sistema de gestión de auditoría financiera y un dashboard de datos de mercado en vivo — ambos sobre microservicios con comunicación WebSocket en tiempo real mediante SignalR.</p>
-          <p class="project-desc">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
+          <div class="project-role-badge"><span class="role-dot"></span><span data-i18n="p2.project-role-badge.1">Desarrollador Full-Stack &amp; Ingeniero Cloud</span></div>
+          <div class="project-title" data-i18n="p2.project-title.1">Plataforma de Gestión Financiera y Datos de Mercado en Tiempo Real</div>
+          <p class="project-desc" data-i18n="p2.project-desc.1">Dos aplicaciones enterprise interconectadas: un sistema de gestión de auditoría financiera y un dashboard de datos de mercado en vivo — ambos sobre microservicios con comunicación WebSocket en tiempo real mediante SignalR.</p>
+          <p class="project-desc" data-i18n="common.public-only-notice">Actualmente, solo es posible visualizar la sección pública. Debido a restricciones legales, ciberseguridad y de propiedad intelectual, no se puede mostrar la información completa.</p>
           <div class="project-highlights">
-            <div class="highlight-item">Dashboards financieros en tiempo real con SignalR WebSockets y feeds de datos de mercado configurables</div>
-            <div class="highlight-item">Backend completo en microservicios .NET Core con Service Bus, Entity Framework y LINQ</div>
-            <div class="highlight-item">Pipeline ETL en Azure Data Factory; Blob Storage; CI/CD vía Azure Pipelines</div>
-            <div class="highlight-item">Optimización SQL Server a escala enterprise: stored procedures, vistas, jobs y funciones</div>
+            <div class="highlight-item" data-i18n="p2.highlight-item.1">Dashboards financieros en tiempo real con SignalR WebSockets y feeds de datos de mercado configurables</div>
+            <div class="highlight-item" data-i18n="p2.highlight-item.2">Backend completo en microservicios .NET Core con Service Bus, Entity Framework y LINQ</div>
+            <div class="highlight-item" data-i18n="p2.highlight-item.3">Pipeline ETL en Azure Data Factory; Blob Storage; CI/CD vía Azure Pipelines</div>
+            <div class="highlight-item" data-i18n="p2.highlight-item.4">Optimización SQL Server a escala enterprise: stored procedures, vistas, jobs y funciones</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">SignalR</span><span class="stack-tag">SCSS</span><span class="stack-tag">lodash</span></div></div>
-          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">Entity Framework</span><span class="stack-tag">Service Bus</span></div></div>
-          <div><div class="stack-group-label">Cloud y Datos</div><div class="stack-tags"><span class="stack-tag highlight">Azure Pipelines</span><span class="stack-tag highlight">Data Factory</span><span class="stack-tag">Azure SQL</span><span class="stack-tag">Blob Storage</span><span class="stack-tag">App Insights</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.frontend">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">SignalR</span><span class="stack-tag">SCSS</span><span class="stack-tag">lodash</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.backend">Backend</div><div class="stack-tags"><span class="stack-tag highlight">.NET Core</span><span class="stack-tag highlight">C#</span><span class="stack-tag">Entity Framework</span><span class="stack-tag">Service Bus</span></div></div>
+          <div><div class="stack-group-label" data-i18n="p2.stack-group-label.1">Cloud y Datos</div><div class="stack-tags"><span class="stack-tag highlight">Azure Pipelines</span><span class="stack-tag highlight">Data Factory</span><span class="stack-tag">Azure SQL</span><span class="stack-tag">Blob Storage</span><span class="stack-tag">App Insights</span></div></div>
         </div>
       </div>
     </div>
@@ -514,31 +532,31 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num">Proyecto / 03</div>
+            <div class="project-num" data-i18n="p3.project-num.1">Proyecto / 03</div>
             <div class="project-company">Woonkly</div>
             <div class="project-period">2021</div>
             <a href="https://woonkly.ai" target="_blank" class="project-link">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver plataforma
+              <span data-i18n="p3.project-link.1">Ver plataforma</span>
             </a>
           </div>
-          <div class="project-status ended"><div class="project-status-dot"></div>Completado</div>
+          <div class="project-status ended"><div class="project-status-dot"></div><span data-i18n="common.completado">Completado</span></div>
         </div>
         <div class="project-body">
-          <div class="project-role-badge"><span class="role-dot"></span><span>Desarrollador Full-Stack AWS</span></div>
-          <div class="project-title">Exchange de Criptomonedas y Plataforma de Creadores con IA</div>
-          <p class="project-desc">Infraestructura full-stack completa para Woonkly, exchange de criptomonedas en Estonia y plataforma de creación de contenido con IA. Diseño del sistema de autenticación, dashboards de administración y APIs serverless en AWS.</p>
+          <div class="project-role-badge"><span class="role-dot"></span><span data-i18n="p3.project-role-badge.1">Desarrollador Full-Stack AWS</span></div>
+          <div class="project-title" data-i18n="p3.project-title.1">Exchange de Criptomonedas y Plataforma de Creadores con IA</div>
+          <p class="project-desc" data-i18n="p3.project-desc.1">Infraestructura full-stack completa para Woonkly, exchange de criptomonedas en Estonia y plataforma de creación de contenido con IA. Diseño del sistema de autenticación, dashboards de administración y APIs serverless en AWS.</p>
           <div class="project-highlights">
-            <div class="highlight-item">SPA con React 18 + TypeScript y Tailwind CSS para autenticación de administradores y dashboard de usuarios</div>
-            <div class="highlight-item">AWS Cognito User Pool para gestión segura de identidades; APIs REST + GraphQL vía AppSync y API Gateway</div>
-            <div class="highlight-item">Lambda serverless para HTTP, triggers DynamoDB y procesamiento asíncrono</div>
-            <div class="highlight-item">Pruebas unitarias con Jest; pipeline de despliegue con AWS Amplify desde el inicio</div>
+            <div class="highlight-item" data-i18n="p3.highlight-item.1">SPA con React 18 + TypeScript y Tailwind CSS para autenticación de administradores y dashboard de usuarios</div>
+            <div class="highlight-item" data-i18n="p3.highlight-item.2">AWS Cognito User Pool para gestión segura de identidades; APIs REST + GraphQL vía AppSync y API Gateway</div>
+            <div class="highlight-item" data-i18n="p3.highlight-item.3">Lambda serverless para HTTP, triggers DynamoDB y procesamiento asíncrono</div>
+            <div class="highlight-item" data-i18n="p3.highlight-item.4">Pruebas unitarias con Jest; pipeline de despliegue con AWS Amplify desde el inicio</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">Jest</span></div></div>
-          <div><div class="stack-group-label">Backend</div><div class="stack-tags"><span class="stack-tag highlight">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag highlight">GraphQL</span><span class="stack-tag">AppSync</span></div></div>
-          <div><div class="stack-group-label">AWS</div><div class="stack-tags"><span class="stack-tag highlight">Lambda</span><span class="stack-tag highlight">DynamoDB</span><span class="stack-tag">Cognito</span><span class="stack-tag">API Gateway</span><span class="stack-tag">Amplify</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.frontend">Frontend</div><div class="stack-tags"><span class="stack-tag highlight">React 18</span><span class="stack-tag highlight">TypeScript</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">Jest</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.backend">Backend</div><div class="stack-tags"><span class="stack-tag highlight">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag highlight">GraphQL</span><span class="stack-tag">AppSync</span></div></div>
+          <div><div class="stack-group-label" data-i18n="p3.stack-group-label.1">AWS</div><div class="stack-tags"><span class="stack-tag highlight">Lambda</span><span class="stack-tag highlight">DynamoDB</span><span class="stack-tag">Cognito</span><span class="stack-tag">API Gateway</span><span class="stack-tag">Amplify</span></div></div>
         </div>
       </div>
     </div>
@@ -552,7 +570,7 @@
           <div class="iframe-overlay">
             <a href="https://savqro-qjyk.vercel.app/" target="_blank" class="iframe-visit-btn">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" style="width:11px;height:11px"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver aplicación en vivo
+              <span data-i18n="common.ver-aplicacion-en-vivo">Ver aplicación en vivo</span>
             </a>
           </div>
         </div>
@@ -560,34 +578,34 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num amber">Proyecto / 04</div>
+            <div class="project-num amber" data-i18n="p4.project-num.1">Proyecto / 04</div>
             <div class="project-company">SavQRO</div>
-            <div class="project-period">2025 — Presente</div>
+            <div class="project-period" data-i18n="common.period-2025-present">2025 — Presente</div>
             <a href="https://savqro-qjyk.vercel.app/" target="_blank" class="project-link amber">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver aplicación
+              <span data-i18n="common.ver-aplicacion">Ver aplicación</span>
             </a>
           </div>
-          <div class="project-status beta"><div class="project-status-dot"></div>Beta — Go Live Próximo</div>
+          <div class="project-status beta"><div class="project-status-dot"></div><span data-i18n="p4.project-status.1">Beta — Go Live Próximo</span></div>
         </div>
         <div class="project-body">
-          <div class="badge-beta"><span class="badge-beta-dot"></span>Versión Beta · Lanzamiento en preparación</div>
-          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
-          <div class="project-title">SaaS para Empresa de Aluminio y Vidrio con más de 20 Años de Trayectoria</div>
-          <p class="project-desc">
+          <div class="badge-beta"><span class="badge-beta-dot"></span><span data-i18n="p4.badge-beta.1">Versión Beta · Lanzamiento en preparación</span></div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span data-i18n="common.role-founder-fullstack">Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title" data-i18n="p4.project-title.1">SaaS para Empresa de Aluminio y Vidrio con más de 20 Años de Trayectoria</div>
+          <p class="project-desc" data-i18n="p4.project-desc.1">
             Plataforma digital diseñada para transformar un negocio familiar de aluminio y vidrio con más de 20 años de experiencia en una empresa formal y tecnológicamente competitiva. Cubre gestión de cotizaciones, catálogo de productos, seguimiento de proyectos y presencia digital profesional desde Querétaro.
           </p>
           <div class="project-highlights">
-            <div class="highlight-item amber">Digitalización completa del proceso comercial: cotizaciones, proyectos residenciales, hoteles, plazas y oficinas</div>
-            <div class="highlight-item amber">Interfaz centrada en atención al cliente con catálogo visual de trabajos y formulario de contacto integrado</div>
-            <div class="highlight-item amber">Diseño mobile-first optimizado para clientes en campo y personal administrativo</div>
-            <div class="highlight-item amber">Desplegado en Vercel con CI/CD automático; versión go-live en preparación con el cliente</div>
+            <div class="highlight-item amber" data-i18n="p4.highlight-item.1">Digitalización completa del proceso comercial: cotizaciones, proyectos residenciales, hoteles, plazas y oficinas</div>
+            <div class="highlight-item amber" data-i18n="p4.highlight-item.2">Interfaz centrada en atención al cliente con catálogo visual de trabajos y formulario de contacto integrado</div>
+            <div class="highlight-item amber" data-i18n="p4.highlight-item.3">Diseño mobile-first optimizado para clientes en campo y personal administrativo</div>
+            <div class="highlight-item amber" data-i18n="p4.highlight-item.4">Desplegado en Vercel con CI/CD automático; versión go-live en preparación con el cliente</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label amber">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span></div></div>
-          <div><div class="stack-group-label amber">Estilos & UI</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Framer Motion</span><span class="stack-tag amber">Lucide React</span></div></div>
-          <div><div class="stack-group-label amber">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">CI/CD</span><span class="stack-tag amber">App Router</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.framework">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p4.stack-group-label.1">Estilos & UI</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Framer Motion</span><span class="stack-tag amber">Lucide React</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.infraestructura">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">CI/CD</span><span class="stack-tag amber">App Router</span></div></div>
         </div>
       </div>
     </div>
@@ -601,7 +619,7 @@
           <div class="iframe-overlay">
             <a href="https://cafeteria-qro.vercel.app/" target="_blank" class="iframe-visit-btn">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" style="width:11px;height:11px"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver aplicación en vivo
+              <span data-i18n="common.ver-aplicacion-en-vivo">Ver aplicación en vivo</span>
             </a>
           </div>
         </div>
@@ -609,34 +627,34 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num amber">Proyecto / 05</div>
+            <div class="project-num amber" data-i18n="p5.project-num.1">Proyecto / 05</div>
             <div class="project-company">Cafetería QRO</div>
-            <div class="project-period">2025 — Presente</div>
+            <div class="project-period" data-i18n="common.period-2025-present">2025 — Presente</div>
             <a href="https://cafeteria-qro.vercel.app/" target="_blank" class="project-link amber">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver aplicación
+              <span data-i18n="common.ver-aplicacion">Ver aplicación</span>
             </a>
           </div>
-          <div class="project-status beta"><div class="project-status-dot"></div>Beta — Lanzamiento Próximo</div>
+          <div class="project-status beta"><div class="project-status-dot"></div><span data-i18n="common.status-beta-soon">Beta — Lanzamiento Próximo</span></div>
         </div>
         <div class="project-body">
-          <div class="badge-beta"><span class="badge-beta-dot"></span>Versión Beta · Lanzamiento Próximo</div>
-          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
-          <div class="project-title">Sitio Web Premium para Cadena de Cafeterías con 5+ Establecimientos en Querétaro</div>
-          <p class="project-desc">
+          <div class="badge-beta"><span class="badge-beta-dot"></span><span data-i18n="common.badge-beta-soon">Versión Beta · Lanzamiento Próximo</span></div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span data-i18n="common.role-founder-fullstack">Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title" data-i18n="p5.project-title.1">Sitio Web Premium para Cadena de Cafeterías con 5+ Establecimientos en Querétaro</div>
+          <p class="project-desc" data-i18n="p5.project-desc.1">
             Presencia digital de alto impacto para una cadena de cafeterías de especialidad con más de 5 establecimientos en Querétaro. Experiencia visual inmersiva con animaciones avanzadas en Framer Motion, diseño editorial minimalista y pantalla principal próxima a recibir efectos 3D interactivos.
           </p>
           <div class="project-highlights">
-            <div class="highlight-item amber">Estética editorial minimalista sin border-radius, paleta cálida amber/stone y tipografía Cormorant Garamond</div>
-            <div class="highlight-item amber">Animaciones avanzadas con Framer Motion 12 para transiciones de sección, parallax y entradas escalonadas</div>
-            <div class="highlight-item amber">Menú digital, galería de productos, ubicaciones con horarios y sección de reservaciones</div>
-            <div class="highlight-item amber">Pantalla principal en preparación para efecto 3D interactivo; diseño mobile-first con Tailwind CSS 4</div>
+            <div class="highlight-item amber" data-i18n="p5.highlight-item.1">Estética editorial minimalista sin border-radius, paleta cálida amber/stone y tipografía Cormorant Garamond</div>
+            <div class="highlight-item amber" data-i18n="p5.highlight-item.2">Animaciones avanzadas con Framer Motion 12 para transiciones de sección, parallax y entradas escalonadas</div>
+            <div class="highlight-item amber" data-i18n="p5.highlight-item.3">Menú digital, galería de productos, ubicaciones con horarios y sección de reservaciones</div>
+            <div class="highlight-item amber" data-i18n="p5.highlight-item.4">Pantalla principal en preparación para efecto 3D interactivo; diseño mobile-first con Tailwind CSS 4</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label amber">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js 16</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span><span class="stack-tag amber">App Router</span></div></div>
-          <div><div class="stack-group-label amber">Estilos & Animaciones</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag highlight amber">Framer Motion 12</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Radix UI</span><span class="stack-tag amber">tw-animate-css</span></div></div>
-          <div><div class="stack-group-label amber">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">ESLint 9</span><span class="stack-tag amber">PostCSS</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.framework">Framework</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js 16</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span><span class="stack-tag amber">App Router</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p5.stack-group-label.1">Estilos & Animaciones</div><div class="stack-tags"><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag highlight amber">Framer Motion 12</span><span class="stack-tag amber">shadcn/ui</span><span class="stack-tag amber">Radix UI</span><span class="stack-tag amber">tw-animate-css</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.infraestructura">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Vercel</span><span class="stack-tag amber">ESLint 9</span><span class="stack-tag amber">PostCSS</span></div></div>
         </div>
       </div>
     </div>
@@ -647,31 +665,31 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num amber">Proyecto / 06</div>
+            <div class="project-num amber" data-i18n="p6.project-num.1">Proyecto / 06</div>
             <div class="project-company">HD TE Soluciones</div>
-            <div class="project-period">2026 — Presente</div>
+            <div class="project-period" data-i18n="common.period-2026-present">2026 — Presente</div>
           </div>
-          <div class="project-status beta"><div class="project-status-dot"></div>Diseño Estructural</div>
+          <div class="project-status beta"><div class="project-status-dot"></div><span data-i18n="p6.project-status.1">Diseño Estructural</span></div>
         </div>
         <div class="project-body">
-          <div class="badge-beta"><span class="badge-beta-dot"></span>Fase de Diseño Estructural · Prototipo Navegable</div>
-          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
-          <div class="project-title">Plataforma de Venta de Camiones y Tractocamiones Seminuevos con Inspección Documentada de 120 Puntos</div>
-          <p class="project-desc">
+          <div class="badge-beta"><span class="badge-beta-dot"></span><span data-i18n="p6.badge-beta.1">Fase de Diseño Estructural · Prototipo Navegable</span></div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span data-i18n="common.role-founder-fullstack">Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title" data-i18n="p6.project-title.1">Plataforma de Venta de Camiones y Tractocamiones Seminuevos con Inspección Documentada de 120 Puntos</div>
+          <p class="project-desc" data-i18n="p6.project-desc.1">
             Plataforma digital para una comercializadora de transporte de carga pesada en Querétaro: tractocamiones, torton, rabón, volteo, pipa, caja seca, refrigerado y más. Catálogo de unidades con ficha técnica completa, historial de inspección por rubro, financiamiento y servicios de facturación y valuación de unidades.
           </p>
-          <p class="project-desc">Actualmente es un prototipo navegable con datos de muestra y sin backend. El contenido está solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
+          <p class="project-desc" data-i18n="p6.project-desc.2">Actualmente es un prototipo navegable con datos de muestra y sin backend. El contenido está solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
           <div class="project-highlights">
-            <div class="highlight-item amber">Catálogo de 10 tipos de unidad con filtros combinables por marca, año, precio, kilometraje, ejes, transmisión, potencia y equipamiento; la URL conserva los filtros y permite comparar hasta 3 unidades</div>
-            <div class="highlight-item amber">Ficha técnica con inspección de 120 puntos en 6 rubros (motor, ejes, frenos, dirección, eléctrico y chasis), estado documental, equipamiento y galería con visor</div>
-            <div class="highlight-item amber">Calculadora de financiamiento (enganche, plazo y tasa) con esquemas de crédito simple, arrendamiento puro y unidad a cuenta</div>
-            <div class="highlight-item amber">Servicios dedicados de facturación CFDI 4.0 y «Vender mi unidad» con valuación el mismo día; cortina de entrada con video, diseño responsive y respeto a prefers-reduced-motion</div>
+            <div class="highlight-item amber" data-i18n="p6.highlight-item.1">Catálogo de 10 tipos de unidad con filtros combinables por marca, año, precio, kilometraje, ejes, transmisión, potencia y equipamiento; la URL conserva los filtros y permite comparar hasta 3 unidades</div>
+            <div class="highlight-item amber" data-i18n="p6.highlight-item.2">Ficha técnica con inspección de 120 puntos en 6 rubros (motor, ejes, frenos, dirección, eléctrico y chasis), estado documental, equipamiento y galería con visor</div>
+            <div class="highlight-item amber" data-i18n="p6.highlight-item.3">Calculadora de financiamiento (enganche, plazo y tasa) con esquemas de crédito simple, arrendamiento puro y unidad a cuenta</div>
+            <div class="highlight-item amber" data-i18n="p6.highlight-item.4">Servicios dedicados de facturación CFDI 4.0 y «Vender mi unidad» con valuación el mismo día; cortina de entrada con video, diseño responsive y respeto a prefers-reduced-motion</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label amber">Frontend</div><div class="stack-tags"><span class="stack-tag highlight amber">React 18</span><span class="stack-tag amber">JavaScript</span><span class="stack-tag amber">HTML5 / CSS3</span><span class="stack-tag amber">Routing por hash</span></div></div>
-          <div><div class="stack-group-label amber">Diseño &amp; UX</div><div class="stack-tags"><span class="stack-tag highlight amber">Claude Design</span><span class="stack-tag amber">Archivo</span><span class="stack-tag amber">IBM Plex Mono</span><span class="stack-tag amber">Responsive</span></div></div>
-          <div><div class="stack-group-label amber">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Sitio estático</span><span class="stack-tag amber">GitHub</span><span class="stack-tag amber">Video MP4 + poster</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.frontend">Frontend</div><div class="stack-tags"><span class="stack-tag highlight amber">React 18</span><span class="stack-tag amber">JavaScript</span><span class="stack-tag amber">HTML5 / CSS3</span><span class="stack-tag amber" data-i18n="p6.stack-tag.1">Routing por hash</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p6.stack-group-label.1">Diseño &amp; UX</div><div class="stack-tags"><span class="stack-tag highlight amber">Claude Design</span><span class="stack-tag amber">Archivo</span><span class="stack-tag amber">IBM Plex Mono</span><span class="stack-tag amber">Responsive</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="common.infraestructura">Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber" data-i18n="p6.stack-tag.2">Sitio estático</span><span class="stack-tag amber">GitHub</span><span class="stack-tag amber" data-i18n="p6.stack-tag.3">Video MP4 + poster</span></div></div>
         </div>
       </div>
     </div>
@@ -682,35 +700,35 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num amber">Proyecto / 07</div>
+            <div class="project-num amber" data-i18n="p7.project-num.1">Proyecto / 07</div>
             <div class="project-company">Seguridad General Querétaro</div>
-            <div class="project-period">2026 — Presente</div>
+            <div class="project-period" data-i18n="common.period-2026-present">2026 — Presente</div>
             <a href="https://qro-security.vercel.app/" target="_blank" class="project-link amber">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver aplicación
+              <span data-i18n="common.ver-aplicacion">Ver aplicación</span>
             </a>
           </div>
-          <div class="project-status beta"><div class="project-status-dot"></div>Beta — Lanzamiento Próximo</div>
+          <div class="project-status beta"><div class="project-status-dot"></div><span data-i18n="common.status-beta-soon">Beta — Lanzamiento Próximo</span></div>
         </div>
         <div class="project-body">
-          <div class="badge-beta"><span class="badge-beta-dot"></span>Versión Beta · Lanzamiento Próximo</div>
-          <div class="project-role-badge"><span class="role-dot amber"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
-          <div class="project-title">E-commerce y Panel Administrativo para Distribuidor de Seguridad Electrónica con más de 1,000 SKU</div>
-          <p class="project-desc">
+          <div class="badge-beta"><span class="badge-beta-dot"></span><span data-i18n="common.badge-beta-soon">Versión Beta · Lanzamiento Próximo</span></div>
+          <div class="project-role-badge"><span class="role-dot amber"></span><span data-i18n="common.role-founder-fullstack">Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title" data-i18n="p7.project-title.1">E-commerce y Panel Administrativo para Distribuidor de Seguridad Electrónica con más de 1,000 SKU</div>
+          <p class="project-desc" data-i18n="p7.project-desc.1">
             Plataforma de ventas en línea para un distribuidor de equipo de seguridad electrónica en Querétaro: videovigilancia, control de acceso, automatización, energía y cableado. Incluye catálogo, cuenta de cliente, pedidos con pago en línea y un panel para operar inventario, pedidos, devoluciones y analítica.
           </p>
-          <p class="project-desc">El sitio está disponible solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
+          <p class="project-desc" data-i18n="common.spanish-only-notice">El sitio está disponible solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
           <div class="project-highlights">
-            <div class="highlight-item amber">Catálogo de 6 grupos con más de 340 subcategorías en hasta 3 niveles, filtros por marca, precio y disponibilidad, y búsqueda tolerante a acentos por nombre, SKU y marca</div>
-            <div class="highlight-item amber">Pagos con Stripe (tarjeta, OXXO y SPEI) y transferencia con comprobante validado por el administrador; apartado de inventario transaccional que evita la sobreventa</div>
-            <div class="highlight-item amber">Panel administrativo con tablero de analítica, pedidos, alta de productos en asistente de 4 pasos, importador CSV por lotes y devoluciones con saldo a favor; roles admin e inventario</div>
-            <div class="highlight-item amber">Notificaciones por correo (Resend) y WhatsApp (Twilio) con reintentos automáticos; seguridad con RLS en todas las tablas, Cloudflare Turnstile y límite de solicitudes</div>
+            <div class="highlight-item amber" data-i18n="p7.highlight-item.1">Catálogo de 6 grupos con más de 340 subcategorías en hasta 3 niveles, filtros por marca, precio y disponibilidad, y búsqueda tolerante a acentos por nombre, SKU y marca</div>
+            <div class="highlight-item amber" data-i18n="p7.highlight-item.2">Pagos con Stripe (tarjeta, OXXO y SPEI) y transferencia con comprobante validado por el administrador; apartado de inventario transaccional que evita la sobreventa</div>
+            <div class="highlight-item amber" data-i18n="p7.highlight-item.3">Panel administrativo con tablero de analítica, pedidos, alta de productos en asistente de 4 pasos, importador CSV por lotes y devoluciones con saldo a favor; roles admin e inventario</div>
+            <div class="highlight-item amber" data-i18n="p7.highlight-item.4">Notificaciones por correo (Resend) y WhatsApp (Twilio) con reintentos automáticos; seguridad con RLS en todas las tablas, Cloudflare Turnstile y límite de solicitudes</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label amber">Framework &amp; UI</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js 16</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag amber">Atomic Design</span></div></div>
-          <div><div class="stack-group-label amber">Backend y Datos</div><div class="stack-tags"><span class="stack-tag highlight amber">Supabase</span><span class="stack-tag highlight amber">PostgreSQL + RLS</span><span class="stack-tag amber">Server Actions</span><span class="stack-tag amber">Zod</span><span class="stack-tag amber">Cloudflare R2</span></div></div>
-          <div><div class="stack-group-label amber">Pagos e Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Stripe</span><span class="stack-tag amber">Resend</span><span class="stack-tag amber">Twilio WhatsApp</span><span class="stack-tag amber">Turnstile</span><span class="stack-tag highlight amber">Vercel</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p7.stack-group-label.1">Framework &amp; UI</div><div class="stack-tags"><span class="stack-tag highlight amber">Next.js 16</span><span class="stack-tag highlight amber">React 19</span><span class="stack-tag amber">TypeScript</span><span class="stack-tag highlight amber">Tailwind CSS 4</span><span class="stack-tag amber">Atomic Design</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p7.stack-group-label.2">Backend y Datos</div><div class="stack-tags"><span class="stack-tag highlight amber">Supabase</span><span class="stack-tag highlight amber">PostgreSQL + RLS</span><span class="stack-tag amber">Server Actions</span><span class="stack-tag amber">Zod</span><span class="stack-tag amber">Cloudflare R2</span></div></div>
+          <div><div class="stack-group-label amber" data-i18n="p7.stack-group-label.3">Pagos e Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight amber">Stripe</span><span class="stack-tag amber">Resend</span><span class="stack-tag amber">Twilio WhatsApp</span><span class="stack-tag amber">Turnstile</span><span class="stack-tag highlight amber">Vercel</span></div></div>
         </div>
       </div>
     </div>
@@ -721,32 +739,32 @@
       <div class="project-content">
         <div class="project-aside">
           <div>
-            <div class="project-num">Proyecto / 08</div>
+            <div class="project-num" data-i18n="p8.project-num.1">Proyecto / 08</div>
             <div class="project-company">Béjar Capital</div>
-            <div class="project-period">2026 — Presente</div>
+            <div class="project-period" data-i18n="common.period-2026-present">2026 — Presente</div>
             <a href="https://www.bejarcapital.com/" target="_blank" class="project-link">
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>
-              Ver sitio web
+              <span data-i18n="common.ver-sitio-web">Ver sitio web</span>
             </a>
           </div>
-          <div class="project-status"><div class="project-status-dot"></div>Activo — En Vivo</div>
+          <div class="project-status"><div class="project-status-dot"></div><span data-i18n="p8.project-status.1">Activo — En Vivo</span></div>
         </div>
         <div class="project-body">
-          <div class="project-role-badge"><span class="role-dot"></span><span>Fundador &amp; Desarrollador Full-Stack</span></div>
-          <div class="project-title">Sitio Web y Panel de Gestión para Firma de Inversión Inmobiliaria Comercial e Industrial</div>
-          <p class="project-desc">Presencia digital para una firma de asesoría e inversión inmobiliaria con sede en Querétaro y cobertura en el Bajío. Catálogos independientes para activos comerciales e industriales, fichas de propiedad con galería, servicios financieros y un panel administrativo para publicar y mantener propiedades sin depender de desarrollo. En producción y operativo desde el 1 de octubre de 2026.</p>
-          <p class="project-desc">El sitio está disponible solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
+          <div class="project-role-badge"><span class="role-dot"></span><span data-i18n="common.role-founder-fullstack">Fundador &amp; Desarrollador Full-Stack</span></div>
+          <div class="project-title" data-i18n="p8.project-title.1">Sitio Web y Panel de Gestión para Firma de Inversión Inmobiliaria Comercial e Industrial</div>
+          <p class="project-desc" data-i18n="p8.project-desc.1">Presencia digital para una firma de asesoría e inversión inmobiliaria con sede en Querétaro y cobertura en el Bajío. Catálogos independientes para activos comerciales e industriales, fichas de propiedad con galería, servicios financieros y un panel administrativo para publicar y mantener propiedades sin depender de desarrollo. En producción y operativo desde el 1 de octubre de 2026.</p>
+          <p class="project-desc" data-i18n="common.spanish-only-notice">El sitio está disponible solo en español: el cliente opera únicamente en este idioma y, por regla de negocio, no se traduce al inglés.</p>
           <div class="project-highlights">
-            <div class="highlight-item">Catálogos Comercial e Industrial en rutas separadas, con filtros por zona, estatus (Disponible, Apartado, Preventa, Vendido y Rentado), precio y moneda MXN o USD por propiedad</div>
-            <div class="highlight-item">Panel protegido con Supabase Auth y RLS: asistente de alta de 7 pasos, fotos convertidas de HEIC a WebP en el navegador, archivado de propiedades y editor de contenido</div>
-            <div class="highlight-item">Cortina de bienvenida con la marca, galería con visor a pantalla completa, mapa de zona aproximada con Leaflet y WhatsApp contextual por área (comercial, industrial y finanzas)</div>
-            <div class="highlight-item">SEO técnico con JSON-LD, sitemap dinámico y metadatos; formulario de contacto con Turnstile y Resend, leads en base de datos, banner de cookies y métricas propias sin cookies</div>
+            <div class="highlight-item" data-i18n="p8.highlight-item.1">Catálogos Comercial e Industrial en rutas separadas, con filtros por zona, estatus (Disponible, Apartado, Preventa, Vendido y Rentado), precio y moneda MXN o USD por propiedad</div>
+            <div class="highlight-item" data-i18n="p8.highlight-item.2">Panel protegido con Supabase Auth y RLS: asistente de alta de 7 pasos, fotos convertidas de HEIC a WebP en el navegador, archivado de propiedades y editor de contenido</div>
+            <div class="highlight-item" data-i18n="p8.highlight-item.3">Cortina de bienvenida con la marca, galería con visor a pantalla completa, mapa de zona aproximada con Leaflet y WhatsApp contextual por área (comercial, industrial y finanzas)</div>
+            <div class="highlight-item" data-i18n="p8.highlight-item.4">SEO técnico con JSON-LD, sitemap dinámico y metadatos; formulario de contacto con Turnstile y Resend, leads en base de datos, banner de cookies y métricas propias sin cookies</div>
           </div>
         </div>
         <div class="project-stack">
-          <div><div class="stack-group-label">Framework</div><div class="stack-tags"><span class="stack-tag highlight">Next.js 16</span><span class="stack-tag highlight">React 19</span><span class="stack-tag">TypeScript</span><span class="stack-tag">App Router</span></div></div>
-          <div><div class="stack-group-label">Estilos &amp; UI</div><div class="stack-tags"><span class="stack-tag highlight">Tailwind CSS 4</span><span class="stack-tag highlight">Framer Motion</span><span class="stack-tag">Leaflet</span><span class="stack-tag">Bodoni Moda</span></div></div>
-          <div><div class="stack-group-label">Backend e Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight">Supabase</span><span class="stack-tag">PostgreSQL + RLS</span><span class="stack-tag">Resend</span><span class="stack-tag">Turnstile</span><span class="stack-tag">sharp</span><span class="stack-tag highlight">Vercel</span></div></div>
+          <div><div class="stack-group-label" data-i18n="common.framework">Framework</div><div class="stack-tags"><span class="stack-tag highlight">Next.js 16</span><span class="stack-tag highlight">React 19</span><span class="stack-tag">TypeScript</span><span class="stack-tag">App Router</span></div></div>
+          <div><div class="stack-group-label" data-i18n="p8.stack-group-label.1">Estilos &amp; UI</div><div class="stack-tags"><span class="stack-tag highlight">Tailwind CSS 4</span><span class="stack-tag highlight">Framer Motion</span><span class="stack-tag">Leaflet</span><span class="stack-tag">Bodoni Moda</span></div></div>
+          <div><div class="stack-group-label" data-i18n="p8.stack-group-label.2">Backend e Infraestructura</div><div class="stack-tags"><span class="stack-tag highlight">Supabase</span><span class="stack-tag">PostgreSQL + RLS</span><span class="stack-tag">Resend</span><span class="stack-tag">Turnstile</span><span class="stack-tag">sharp</span><span class="stack-tag highlight">Vercel</span></div></div>
         </div>
       </div>
     </div>
@@ -760,25 +778,25 @@
     <div class="section-label">
       <span class="section-label-num">03</span>
       <span class="section-label-line"></span>
-      <span class="section-label-text">Acerca de</span>
+      <span class="section-label-text" data-i18n="about.section-label-text.1">Acerca de</span>
     </div>
-    <h2 class="section-title" style="margin-bottom:36px;">Diseñados para la <em>complejidad</em></h2>
+    <h2 class="section-title" style="margin-bottom:36px;" data-i18n="about.section-title.1">Diseñados para la <em>complejidad</em></h2>
     <div class="about-text-block">
-      <p>Somos <strong>Valzar Solutions</strong>, empresa de tecnología especializada en desarrollo de software enterprise, consultoría técnica y soluciones SaaS. Operamos desde Querétaro, México, con alcance en Latinoamérica y Estados Unidos.</p>
-      <p>Nuestro diferenciador es la combinación de profundidad técnica — frontend, backend y cloud — con una <strong>mentalidad de desarrollo AI-first</strong>. Aprovechamos GitHub Copilot con Model Context Protocol para entregar código más rápido, limpio y mantenible a escala enterprise.</p>
-      <p>Desde plataformas financieras para <strong>Deloitte</strong> hasta e-commerce, sitios inmobiliarios y SaaS locales para negocios de Querétaro, entregamos soluciones que escalan con las necesidades del cliente.</p>
+      <p data-i18n="about.about-p.1">Somos <strong>Valzar Solutions</strong>, empresa de tecnología especializada en desarrollo de software enterprise, consultoría técnica y soluciones SaaS. Operamos desde Querétaro, México, con alcance en Latinoamérica y Estados Unidos.</p>
+      <p data-i18n="about.about-p.2">Nuestro diferenciador es la combinación de profundidad técnica — frontend, backend y cloud — con una <strong>mentalidad de desarrollo AI-first</strong>. Aprovechamos GitHub Copilot con Model Context Protocol para entregar código más rápido, limpio y mantenible a escala enterprise.</p>
+      <p data-i18n="about.about-p.3">Desde plataformas financieras para <strong>Deloitte</strong> hasta e-commerce, sitios inmobiliarios y SaaS locales para negocios de Querétaro, entregamos soluciones que escalan con las necesidades del cliente.</p>
     </div>
   </div>
   <div>
     <div class="about-credentials">
-      <div class="credential-row"><span class="cred-label">Empresa</span><span class="cred-value"><a href="https://www.valzarsolutions.com/" target="_blank" class="cred-link">Valzar Solutions</a></span></div>
-      <div class="credential-row"><span class="cred-label">Ubicación</span><span class="cred-value">Querétaro, México</span></div>
-      <div class="credential-row"><span class="cred-label">Cliente Actual</span><span class="cred-value">Deloitte</span></div>
-      <div class="credential-row"><span class="cred-label">Stack Principal</span><span class="cred-value">.NET · React · Azure</span></div>
-      <div class="credential-row"><span class="cred-label">SaaS Stack</span><span class="cred-value">Next.js · Tailwind · Supabase · Vercel</span></div>
-      <div class="credential-row"><span class="cred-label">Plataformas Cloud</span><span class="cred-value">Azure · AWS · Vercel · Supabase · Cloudflare</span></div>
-      <div class="credential-row"><span class="cred-label">Disponibilidad</span><span class="cred-value">Consultoría Disponible</span></div>
-      <div class="credential-row"><span class="cred-label">Idiomas</span><span class="cred-value">Español · Inglés</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.1">Empresa</span><span class="cred-value"><a href="https://www.valzarsolutions.com/" target="_blank" class="cred-link">Valzar Solutions</a></span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.2">Ubicación</span><span class="cred-value" data-i18n="about.cred-value.1">Querétaro, México</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.3">Cliente Actual</span><span class="cred-value">Deloitte</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.4">Stack Principal</span><span class="cred-value">.NET · React · Azure</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.5">SaaS Stack</span><span class="cred-value">Next.js · Tailwind · Supabase · Vercel</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="common.plataformas-cloud">Plataformas Cloud</span><span class="cred-value">Azure · AWS · Vercel · Supabase · Cloudflare</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.6">Disponibilidad</span><span class="cred-value" data-i18n="about.cred-value.2">Consultoría Disponible</span></div>
+      <div class="credential-row"><span class="cred-label" data-i18n="about.cred-label.7">Idiomas</span><span class="cred-value" data-i18n="about.cred-value.3">Español · Inglés</span></div>
     </div>
   </div>
 </section>
@@ -788,20 +806,20 @@
   <div class="section-label">
     <span class="section-label-num">04</span>
     <span class="section-label-line"></span>
-    <span class="section-label-text">Contacto</span>
+    <span class="section-label-text" data-i18n="common.contacto">Contacto</span>
   </div>
-  <h2 class="contact-title">¿Listo para construir algo <em>excepcional?</em></h2>
-  <p class="contact-subtitle">Disponibles para proyectos de desarrollo SaaS, consultoría técnica y arquitecturas cloud. Hablemos sobre cómo podemos ayudarte.</p>
+  <h2 class="contact-title" data-i18n="contact.contact-title.1">¿Listo para construir algo <em>excepcional?</em></h2>
+  <p class="contact-subtitle" data-i18n="contact.contact-subtitle.1">Disponibles para proyectos de desarrollo SaaS, consultoría técnica y arquitecturas cloud. Hablemos sobre cómo podemos ayudarte.</p>
   <div class="contact-ctas">
-    <a href="mailto:contacto@valzarsolutions.com" class="btn-primary">Enviar Mensaje →</a>
+    <a href="mailto:contacto@valzarsolutions.com" class="btn-primary" data-i18n="contact.btn-primary.1">Enviar Mensaje →</a>
     <a href="https://www.valzarsolutions.com/" target="_blank" class="btn-secondary">valzarsolutions.com ↗</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand"><span>Valzar Solutions</span> — Portafolio de Proyectos</div>
-  <div class="footer-copy">© 2026 · Todos los derechos reservados</div>
+  <div class="footer-brand" data-i18n="footer.footer-brand.1"><span>Valzar Solutions</span> — Portafolio de Proyectos</div>
+  <div class="footer-copy" data-i18n="footer.footer-copy.1">© 2026 · Todos los derechos reservados</div>
 </footer>
 
 </div>
@@ -852,7 +870,7 @@
   const GALLERY_FOCUS = {
     hdte: 'center 40%',
     sgq: 'center 34%',
-    bejar: 'center 23%'
+    bejar: 'center 35%'
   };
 
   function renderGallery(id) {
@@ -936,6 +954,210 @@
       delete touchState[id];
     });
   });
+
+  // ── I18N (ES / EN) ──
+  // El español vive en el propio HTML (fuente de verdad y respaldo sin JS):
+  // cada elemento con data-i18n guarda su contenido original al cargar y aquí
+  // solo se define el inglés. Para agregar texto nuevo: data-i18n="clave" en el
+  // HTML + la misma clave en I18N.en.
+  const I18N = {
+      "en": {
+          "meta.title": "Omar Balanzar — Full-Stack Engineer & Cloud Architect & AI Engineer | Founder of Valzar Solutions",
+          "aria.lang": "Language",
+          "gallery.alt": "Screenshot",
+          "nav.link-expertise.1": "Expertise",
+          "nav.link-projects.1": "Projects",
+          "nav.link-about.1": "About",
+          "common.contacto": "Contact",
+          "hero.hero-eyebrow-text.1": "Full-Stack Engineering &amp; Cloud Architecture",
+          "hero.hero-title.1": "Systems that<br/> <em>scale.</em><br/> Solutions that last.",
+          "hero.hero-desc.1": "Over 6 years delivering enterprise-grade cloud applications in finance, artificial intelligence and blockchain. Specialists in .NET, React and Azure — focused on AI-augmented development and microservices architectures.",
+          "hero.hero-stat-label.1": "Years of Experience",
+          "hero.hero-stat-label.2": "Projects in Portfolio",
+          "common.plataformas-cloud": "Cloud Platforms",
+          "hero.hero-stat-label.3": "Core Technologies",
+          "hero.scroll-hint.1": "Scroll",
+          "common.microservicios": "Microservices <span class=\"dot\"></span>",
+          "common.desarrollo-con-ia": "AI-Assisted Development <span class=\"dot\"></span>",
+          "expertise.section-label-text.1": "Core Disciplines",
+          "expertise.section-title.1": "Areas of <em>Specialization</em>",
+          "expertise.intro.1": "Multidisciplinary team with command of frontend, backend, cloud infrastructure and AI-assisted workflows.",
+          "expertise.expertise-name.1": "Frontend Development",
+          "expertise.expertise-desc.1": "High-performance responsive web applications with React and Next.js, real-time data and polished UI systems with Framer Motion.",
+          "expertise.expertise-name.2": "Backend &amp; APIs",
+          "expertise.expertise-desc.2": "Robust RESTful and GraphQL microservices with .NET Core and Node.js. Security, scalability and clean architecture.",
+          "expertise.expertise-name.3": "Cloud Architecture",
+          "expertise.expertise-desc.3": "End-to-end cloud solutions on Azure and AWS. CI/CD, serverless functions, data pipelines and infrastructure as code.",
+          "expertise.expertise-name.4": "AI-Assisted Development",
+          "expertise.expertise-desc.4": "GitHub Copilot with MCP to generate SOLID-compliant code, automate testing and speed up delivery without sacrificing quality.",
+          "projects.section-label-text.1": "Selected Work",
+          "projects.section-title.1": "Project <em>Portfolio</em>",
+          "common.ver-sitio-web": "Visit website",
+          "common.ver-aplicacion": "View application",
+          "common.ver-aplicacion-en-vivo": "View live application",
+          "common.public-only-notice": "Currently, only the public section can be viewed. Due to legal, cybersecurity and intellectual property restrictions, the full information cannot be shown.",
+          "common.spanish-only-notice": "The site is available in Spanish only: the client operates exclusively in this language and, by business rule, it is not translated into English.",
+          "common.role-founder-fullstack": "Founder &amp; Full-Stack Developer",
+          "common.completado": "Completed",
+          "common.status-beta-soon": "Beta — Launching Soon",
+          "common.badge-beta-soon": "Beta Version · Launching Soon",
+          "common.period-2025-present": "2025 — Present",
+          "common.period-2026-present": "2026 — Present",
+          "common.frontend": "Frontend",
+          "common.backend": "Backend",
+          "common.framework": "Framework",
+          "common.infraestructura": "Infrastructure",
+          "p1.project-num.1": "Project / 01",
+          "p1.project-period.1": "2024 — Present",
+          "p1.project-status.1": "Active",
+          "p1.project-role-badge.1": "AI-Augmented Full-Stack Developer",
+          "p1.project-title.1": "Enterprise Financial Risk and Audit Platform",
+          "p1.project-desc.1": "Conflict detection system to identify risks across WBS activities, financial interests and restricted entities within a large-scale enterprise audit environment. Built with React 18, .NET Core and Azure.",
+          "p1.highlight-item.1": "Conflict detection UI for WBS activities and financial-risk entities with real-time filters and reports",
+          "p1.highlight-item.2": "RESTful microservices in ASP.NET Core with near real-time market data integration",
+          "p1.highlight-item.3": "GitHub Copilot + MCP to generate SOLID-compliant code, unit tests and automatic documentation",
+          "p1.highlight-item.4": "Azure Functions for background processing; App Insights for observability; Snyk for security",
+          "p1.stack-group-label.1": "Cloud &amp; AI",
+          "p2.project-num.1": "Project / 02",
+          "p2.project-role-badge.1": "Full-Stack Developer &amp; Cloud Engineer",
+          "p2.project-title.1": "Financial Management and Real-Time Market Data Platform",
+          "p2.project-desc.1": "Two interconnected enterprise applications: a financial audit management system and a live market data dashboard — both built on microservices with real-time WebSocket communication via SignalR.",
+          "p2.highlight-item.1": "Real-time financial dashboards with SignalR WebSockets and configurable market data feeds",
+          "p2.highlight-item.2": "Full microservices backend on .NET Core with Service Bus, Entity Framework and LINQ",
+          "p2.highlight-item.3": "ETL pipeline in Azure Data Factory; Blob Storage; CI/CD via Azure Pipelines",
+          "p2.highlight-item.4": "Enterprise-scale SQL Server optimization: stored procedures, views, jobs and functions",
+          "p2.stack-group-label.1": "Cloud &amp; Data",
+          "p3.project-num.1": "Project / 03",
+          "p3.project-link.1": "View platform",
+          "p3.project-role-badge.1": "AWS Full-Stack Developer",
+          "p3.project-title.1": "Cryptocurrency Exchange and AI Creator Platform",
+          "p3.project-desc.1": "Complete full-stack infrastructure for Woonkly, a cryptocurrency exchange in Estonia and AI content-creation platform. Design of the authentication system, admin dashboards and serverless APIs on AWS.",
+          "p3.highlight-item.1": "SPA with React 18 + TypeScript and Tailwind CSS for admin authentication and user dashboard",
+          "p3.highlight-item.2": "AWS Cognito User Pool for secure identity management; REST + GraphQL APIs via AppSync and API Gateway",
+          "p3.highlight-item.3": "Serverless Lambda for HTTP, DynamoDB triggers and asynchronous processing",
+          "p3.highlight-item.4": "Unit testing with Jest; deployment pipeline with AWS Amplify from day one",
+          "p3.stack-group-label.1": "AWS",
+          "p4.project-num.1": "Project / 04",
+          "p4.project-status.1": "Beta — Go Live Soon",
+          "p4.badge-beta.1": "Beta Version · Launch in preparation",
+          "p4.project-title.1": "SaaS for an Aluminum and Glass Company with 20+ Years of History",
+          "p4.project-desc.1": "Digital platform designed to transform a family-owned aluminum and glass business with over 20 years of experience into a formal, technologically competitive company. Covers quote management, product catalog, project tracking and a professional digital presence from Querétaro.",
+          "p4.highlight-item.1": "Full digitization of the sales process: quotes, residential projects, hotels, plazas and offices",
+          "p4.highlight-item.2": "Customer-service-focused interface with a visual catalog of past work and an integrated contact form",
+          "p4.highlight-item.3": "Mobile-first design optimized for field clients and administrative staff",
+          "p4.highlight-item.4": "Deployed on Vercel with automatic CI/CD; go-live version in preparation with the client",
+          "p4.stack-group-label.1": "Styles & UI",
+          "p5.project-num.1": "Project / 05",
+          "p5.project-title.1": "Premium Website for a Coffee Shop Chain with 5+ Locations in Querétaro",
+          "p5.project-desc.1": "High-impact digital presence for a specialty coffee chain with more than 5 locations in Querétaro. Immersive visual experience with advanced Framer Motion animations, minimalist editorial design and a main screen about to receive interactive 3D effects.",
+          "p5.highlight-item.1": "Minimalist editorial aesthetic with no border-radius, warm amber/stone palette and Cormorant Garamond typography",
+          "p5.highlight-item.2": "Advanced animations with Framer Motion 12 for section transitions, parallax and staggered entrances",
+          "p5.highlight-item.3": "Digital menu, product gallery, locations with opening hours and a reservations section",
+          "p5.highlight-item.4": "Main screen being prepared for an interactive 3D effect; mobile-first design with Tailwind CSS 4",
+          "p5.stack-group-label.1": "Styles & Animations",
+          "p6.project-num.1": "Project / 06",
+          "p6.project-status.1": "Structural Design",
+          "p6.badge-beta.1": "Structural Design Phase · Navigable Prototype",
+          "p6.project-title.1": "Platform for Selling Pre-Owned Trucks and Tractor Units with a Documented 120-Point Inspection",
+          "p6.project-desc.1": "Digital platform for a heavy-duty freight transport dealer in Querétaro: tractor units, torton, rabón, dump trucks, tankers, dry vans, refrigerated units and more. Unit catalog with full technical specs, per-category inspection history, financing, and invoicing and unit appraisal services.",
+          "p6.project-desc.2": "Currently a navigable prototype with sample data and no backend. Content is in Spanish only: the client operates exclusively in this language and, by business rule, it is not translated into English.",
+          "p6.highlight-item.1": "Catalog of 10 unit types with combinable filters by brand, year, price, mileage, axles, transmission, horsepower and equipment; the URL preserves filters and lets you compare up to 3 units",
+          "p6.highlight-item.2": "Technical sheet with a 120-point inspection across 6 categories (engine, axles, brakes, steering, electrical and chassis), documentation status, equipment and a gallery with viewer",
+          "p6.highlight-item.3": "Financing calculator (down payment, term and rate) with simple credit, pure leasing and trade-in schemes",
+          "p6.highlight-item.4": "Dedicated CFDI 4.0 invoicing and “Sell my unit” services with same-day appraisal; video intro curtain, responsive design and prefers-reduced-motion support",
+          "p6.stack-tag.1": "Hash routing",
+          "p6.stack-group-label.1": "Design &amp; UX",
+          "p6.stack-tag.2": "Static site",
+          "p6.stack-tag.3": "MP4 video + poster",
+          "p7.project-num.1": "Project / 07",
+          "p7.project-title.1": "E-commerce and Admin Panel for an Electronic Security Distributor with 1,000+ SKUs",
+          "p7.project-desc.1": "Online sales platform for an electronic security equipment distributor in Querétaro: video surveillance, access control, automation, energy and cabling. Includes catalog, customer account, orders with online payment and a panel to manage inventory, orders, returns and analytics.",
+          "p7.highlight-item.1": "Catalog of 6 groups with 340+ subcategories across up to 3 levels, filters by brand, price and availability, and accent-tolerant search by name, SKU and brand",
+          "p7.highlight-item.2": "Payments with Stripe (card, OXXO and SPEI) and bank transfer with a receipt validated by the administrator; transactional inventory reservation that prevents overselling",
+          "p7.highlight-item.3": "Admin panel with analytics dashboard, orders, a 4-step product creation wizard, batch CSV importer and returns with store credit; admin and inventory roles",
+          "p7.highlight-item.4": "Email (Resend) and WhatsApp (Twilio) notifications with automatic retries; security with RLS on all tables, Cloudflare Turnstile and rate limiting",
+          "p7.stack-group-label.1": "Framework &amp; UI",
+          "p7.stack-group-label.2": "Backend &amp; Data",
+          "p7.stack-group-label.3": "Payments &amp; Infrastructure",
+          "p8.project-num.1": "Project / 08",
+          "p8.project-status.1": "Active — Live",
+          "p8.project-title.1": "Website and Management Panel for a Commercial and Industrial Real Estate Investment Firm",
+          "p8.project-desc.1": "Digital presence for a real estate advisory and investment firm based in Querétaro with coverage across the Bajío region. Independent catalogs for commercial and industrial assets, property listings with gallery, financial services and an admin panel to publish and maintain properties without relying on development. In production and operational since October 1, 2026.",
+          "p8.highlight-item.1": "Commercial and Industrial catalogs on separate routes, with filters by zone, status (Available, Reserved, Pre-sale, Sold and Rented), price and MXN or USD currency per property",
+          "p8.highlight-item.2": "Protected panel with Supabase Auth and RLS: 7-step creation wizard, photos converted from HEIC to WebP in the browser, property archiving and content editor",
+          "p8.highlight-item.3": "Welcome curtain with the brand, gallery with full-screen viewer, approximate-zone map with Leaflet and contextual WhatsApp per area (commercial, industrial and finance)",
+          "p8.highlight-item.4": "Technical SEO with JSON-LD, dynamic sitemap and metadata; contact form with Turnstile and Resend, leads stored in the database, cookie banner and in-house cookieless metrics",
+          "p8.stack-group-label.1": "Styles &amp; UI",
+          "p8.stack-group-label.2": "Backend &amp; Infrastructure",
+          "about.section-label-text.1": "About",
+          "about.section-title.1": "Designed for <em>complexity</em>",
+          "about.about-p.1": "We are <strong>Valzar Solutions</strong>, a technology company specialized in enterprise software development, technical consulting and SaaS solutions. We operate from Querétaro, Mexico, with reach across Latin America and the United States.",
+          "about.about-p.2": "Our differentiator is the combination of technical depth — frontend, backend and cloud — with an <strong>AI-first development mindset</strong>. We leverage GitHub Copilot with the Model Context Protocol to deliver faster, cleaner and more maintainable code at enterprise scale.",
+          "about.about-p.3": "From financial platforms for <strong>Deloitte</strong> to e-commerce, real estate websites and local SaaS for Querétaro businesses, we deliver solutions that scale with the client's needs.",
+          "about.cred-label.1": "Company",
+          "about.cred-label.2": "Location",
+          "about.cred-value.1": "Querétaro, Mexico",
+          "about.cred-label.3": "Current Client",
+          "about.cred-label.4": "Main Stack",
+          "about.cred-label.5": "SaaS Stack",
+          "about.cred-label.6": "Availability",
+          "about.cred-value.2": "Consulting Available",
+          "about.cred-label.7": "Languages",
+          "about.cred-value.3": "Spanish · English",
+          "contact.contact-title.1": "Ready to build something <em>exceptional?</em>",
+          "contact.contact-subtitle.1": "Available for SaaS development projects, technical consulting and cloud architectures. Let's talk about how we can help you.",
+          "contact.btn-primary.1": "Send Message →",
+          "footer.footer-brand.1": "<span>Valzar Solutions</span> — Project Portfolio",
+          "footer.footer-copy.1": "© 2026 · All rights reserved"
+      }
+  };
+
+  const LANG_STORAGE_KEY = 'valzar-portfolio-lang';
+  const I18N_NODES = Array.from(document.querySelectorAll('[data-i18n]'));
+  const I18N_ES = new Map(I18N_NODES.map(el => [el, el.innerHTML]));
+  const I18N_ES_TITLE = document.title;
+
+  function applyLang(lang, persist) {
+    if (lang !== 'en') lang = 'es';
+    document.documentElement.lang = lang;
+    document.title = lang === 'en' ? I18N.en['meta.title'] : I18N_ES_TITLE;
+
+    I18N_NODES.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const en = I18N.en[key];
+      if (lang === 'en' && en === undefined) console.warn('[i18n] falta traducción EN:', key);
+      el.innerHTML = (lang === 'en' && en !== undefined) ? en : I18N_ES.get(el);
+    });
+
+    document.querySelectorAll('.gallery-slide img').forEach(img => {
+      img.alt = lang === 'en' ? I18N.en['gallery.alt'] : 'Captura';
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+    });
+    const group = document.querySelector('.lang-switch');
+    if (group) group.setAttribute('aria-label', lang === 'en' ? I18N.en['aria.lang'] : 'Idioma');
+
+    if (persist) {
+      try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) {}
+      try {
+        const url = new URL(location.href);
+        if (lang === 'en') url.searchParams.set('lang', 'en'); else url.searchParams.delete('lang');
+        history.replaceState(null, '', url);
+      } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.addEventListener('click', () => applyLang(b.dataset.lang, true));
+  });
+
+  // Idioma inicial: ?lang= en la URL > preferencia guardada > español
+  (function initLang() {
+    let lang = 'es';
+    try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem(LANG_STORAGE_KEY) || 'es'; } catch (e) {}
+    if (lang === 'en') applyLang('en', false);
+  })();
 </script>
 </body>
 </html>
